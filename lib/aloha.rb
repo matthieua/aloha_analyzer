@@ -1,5 +1,5 @@
 require "aloha/version"
-require "aloha/follower"
+require "aloha/analyzer"
 
 module Aloha
 end

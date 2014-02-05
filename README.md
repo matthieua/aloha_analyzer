@@ -18,7 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+analyser = Aloha::Analyse.new(username, { credentials: credentials })
+analyser.calculate!
+```
 
 ## Contributing
 

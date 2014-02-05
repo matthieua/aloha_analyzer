@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Aloha::Follower do
+describe Aloha::Analyzer do
   subject(:follower) { described_class.new(username, options) }
   let(:username)     { 'mattaussaguel'  }
   let(:options) do
@@ -55,15 +55,8 @@ describe Aloha::Follower do
     end
   end
 
-  describe '#to_h' do
-    subject(:hash) { described_class.new(username, options).to_h }
-    let(:options) do
-      {
-        cursor: cursor,
-        languages: languages
-      }
-    end
-    let(:cursor) { double }
+  describe '#count' do
+    let(:options) { { languages: languages } }
     let(:languages) do
       {
         'en' => 2,
@@ -72,24 +65,8 @@ describe Aloha::Follower do
       }
     end
 
-    it 'returnd a hash' do
-      subject.should be_a Hash
-    end
-
-    it 'includes the username' do
-      subject[:username].should eq username
-    end
-
-    it 'includes the cursor' do
-      subject[:cursor].should eq cursor
-    end
-
-    it 'includes the languages' do
-      subject[:languages].should eq languages
-    end
-
     it 'includes the total language count' do
-      subject[:count].should eq 5
+      subject.count.should eq 5
     end
   end
 

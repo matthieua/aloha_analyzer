@@ -1,5 +1,5 @@
 module Aloha
-  class Follower
+  class Analyzer
     attr_reader :username, :cursor, :languages
     def initialize(username, options = {})
       @username    = username
@@ -8,27 +8,31 @@ module Aloha
       @credentials = options[:credentials]
     end
 
-    def calculate!
-      while true
-        hashie = client.followers(@username, count: 200, skip_status: false, :cursor => @cursor).to_h
-        hashie[:users].each do |user|
-          increment user[:lang]
-        end
-        @cursor = hashie[:next_cursor]
+    def count
+      counter = 0
+      @languages.each do |_, language_count|
+        counter += language_count
       end
-    rescue Twitter::Error::TooManyRequests => error
+      counter
     end
 
-    def to_h
-      {
-        username:  username,
-        languages: languages,
-        count:     total_count,
-        cursor:    cursor
-      }
+    def calculate!
+      response = client.followers(@username, request_options).to_h
+      response[:users].each do |follower|
+        increment user[:follower]
+      end
+      @cursor = response[:next_cursor]
     end
 
     private
+
+    def request_options
+      {
+        count:       200,
+        skip_status: false,
+        cursor:      @cursor
+      }
+    end
 
     def client
       @client ||= ::Twitter::REST::Client.new do |config|
@@ -37,14 +41,6 @@ module Aloha
         config.access_token        = credentials['access_token']
         config.access_token_secret = credentials['access_token_secret']
       end
-    end
-
-    def total_count
-      counter = 0
-      @languages.each do |_, language_count|
-        counter += language_count
-      end
-      counter
     end
 
     def increment(language)

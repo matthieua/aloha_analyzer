@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["matthieu.aussaguel@gmail.com"]
   spec.description   = %q{Analyze twitter followers languages}
   spec.summary       = %q{Analyze twitter followers languages}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/matthieua/aloha_analyzer"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

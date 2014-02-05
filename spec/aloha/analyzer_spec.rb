@@ -99,15 +99,18 @@ describe Aloha::Analyzer do
       stub_get('/1.1/followers/list.json')
         .with(:query => query_args)
         .to_return(:body => body, :headers => headers)
-      subject.calculate!
     end
 
     context 'when first call' do
       it 'sets the next cursor' do
+        subject.calculate!
+
         subject.cursor.should eq next_cursor
       end
 
       it 'calculates the langauges stats' do
+        subject.calculate!
+
         subject.languages.should eq(
           'en' => 2,
           'fr' => 1,
@@ -116,7 +119,15 @@ describe Aloha::Analyzer do
       end
 
       it 'updates the count value' do
+        subject.calculate!
+
         subject.count.should eq 4
+      end
+
+      it 'creates a new twitter client' do
+        Twitter::REST::Client.should_receive(:new).and_call_original
+
+        subject.calculate!
       end
     end
 
@@ -145,18 +156,23 @@ describe Aloha::Analyzer do
       let(:new_body) { new_followers.to_json }
 
       before do
+        subject.calculate!
+
         stub_get('/1.1/followers/list.json')
           .with(query: new_query_args)
           .to_return(body: new_body, headers: headers)
 
-        subject.calculate!
       end
 
       it 'sets the next cursor' do
+        subject.calculate!
+
         subject.cursor.should eq new_next_cursor
       end
 
       it 'calculates the langauges stats' do
+        subject.calculate!
+
         subject.languages.should eq(
           'en' => 2,
           'fr' => 2,
@@ -166,7 +182,15 @@ describe Aloha::Analyzer do
       end
 
       it 'updates the count value' do
+        subject.calculate!
+
         subject.count.should eq 8
+      end
+
+      it 'does not create another twitter client' do
+        Twitter::REST::Client.should_not_receive(:new)
+
+        subject.calculate!
       end
     end
   end

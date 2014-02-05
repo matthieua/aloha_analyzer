@@ -1,5 +1,5 @@
 require "aloha/version"
+require "aloha/follower"
 
 module Aloha
-  # Your code goes here...
 end

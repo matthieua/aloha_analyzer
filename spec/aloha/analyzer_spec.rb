@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Aloha::Analyzer do
-  subject(:follower) { described_class.new(username, options) }
-  let(:username)     { 'mattaussaguel'  }
+  subject(:follower) { described_class.new(screen_name, options) }
+  let(:screen_name)     { 'mattaussaguel'  }
+
   let(:options) do
     {
       credentials: credentials
@@ -11,16 +12,16 @@ describe Aloha::Analyzer do
 
   let(:credentials) do
     {
-      consumer_key:        'consumer_key',
-      consumer_secret:     'consumer_secret',
-      access_token:        'access_token',
-      access_token_secret: 'access_token_secret'
+      consumer_key:        'CK',
+      consumer_secret:     'CS',
+      access_token:        'AT',
+      access_token_secret: 'AS'
     }
   end
 
   describe '#new' do
-    it 'sets the username' do
-      subject.username.should eq username
+    it 'sets the screen_name' do
+      subject.screen_name.should eq screen_name
     end
 
     context 'cursor option is passed' do
@@ -71,11 +72,102 @@ describe Aloha::Analyzer do
   end
 
   describe '#calculate!' do
-    it 'returns a retuns object' do
-      pending
-      subject.calculate!
+    let(:followers) do
+      {
+        "users" => [
+          {"id" => 1, "lang" => "en"},
+          {"id" => 2, "lang" => "fr"},
+          {"id" => 3, "lang" => "en"},
+          {"id" => 4, "lang" => "de"}
+        ],
+        "next_cursor" => next_cursor
+      }
+    end
+    let(:next_cursor) { 1 }
+    let(:query_args) do
+      {
+        skip_status: false,
+        count: 200,
+        :cursor      => '-1',
+        :screen_name => screen_name}
+    end
 
-      puts subject.to_h.inspect
+    let(:body)    { followers.to_json }
+    let(:headers) { {:content_type => 'application/json; charset=utf-8'} }
+
+    before do
+      stub_get('/1.1/followers/list.json')
+        .with(:query => query_args)
+        .to_return(:body => body, :headers => headers)
+      subject.calculate!
+    end
+
+    context 'when first call' do
+      it 'sets the next cursor' do
+        subject.cursor.should eq next_cursor
+      end
+
+      it 'calculates the langauges stats' do
+        subject.languages.should eq(
+          'en' => 2,
+          'fr' => 1,
+          'de' => 1
+        )
+      end
+
+      it 'updates the count value' do
+        subject.count.should eq 4
+      end
+    end
+
+    context 'when run the second time' do
+      let(:new_query_args) do
+        {
+          skip_status: false,
+          count: 200,
+          :cursor      => '1',
+          :screen_name => screen_name}
+      end
+
+      let(:new_followers) do
+        {
+          "users" => [
+            {"id" => 1, "lang" => "fr"},
+            {"id" => 2, "lang" => "de"},
+            {"id" => 3, "lang" => "es"},
+            {"id" => 4, "lang" => "de"}
+          ],
+          "next_cursor" => new_next_cursor
+        }
+      end
+
+      let(:new_next_cursor) { 1 }
+      let(:new_body) { new_followers.to_json }
+
+      before do
+        stub_get('/1.1/followers/list.json')
+          .with(query: new_query_args)
+          .to_return(body: new_body, headers: headers)
+
+        subject.calculate!
+      end
+
+      it 'sets the next cursor' do
+        subject.cursor.should eq new_next_cursor
+      end
+
+      it 'calculates the langauges stats' do
+        subject.languages.should eq(
+          'en' => 2,
+          'fr' => 2,
+          'de' => 3,
+          'es' => 1
+        )
+      end
+
+      it 'updates the count value' do
+        subject.count.should eq 8
+      end
     end
   end
 end

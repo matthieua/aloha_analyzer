@@ -1,8 +1,8 @@
 module Aloha
   class Analyzer
-    attr_reader :username, :cursor, :languages
-    def initialize(username, options = {})
-      @username    = username
+    attr_reader :screen_name, :cursor, :languages
+    def initialize(screen_name, options = {})
+      @screen_name    = screen_name
       @cursor      = options[:cursor] || -1
       @languages   = options[:languages] || Hash.new(0)
       @credentials = options[:credentials]
@@ -17,9 +17,9 @@ module Aloha
     end
 
     def calculate!
-      response = client.followers(@username, request_options).to_h
+      response = client.followers(@screen_name, request_options).to_h
       response[:users].each do |follower|
-        increment user[:follower]
+        increment follower[:lang]
       end
       @cursor = response[:next_cursor]
     end
@@ -35,12 +35,12 @@ module Aloha
     end
 
     def client
-      @client ||= ::Twitter::REST::Client.new do |config|
-        config.consumer_key        = credentials['consumer_key']
-        config.consumer_secret     = credentials['consumer_secret']
-        config.access_token        = credentials['access_token']
-        config.access_token_secret = credentials['access_token_secret']
-      end
+      @client ||= ::Twitter::REST::Client.new(
+        consumer_key:         @credentials[:consumer_key],
+        consumer_secret:      @credentials[:consumer_secret],
+        access_token:         @credentials[:access_token],
+        access_token_secret:  @credentials[:access_token_secret]
+      )
     end
 
     def increment(language)

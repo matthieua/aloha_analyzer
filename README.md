@@ -1,4 +1,4 @@
-# Aloha
+# Aloha Analyzer
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'aloha'
+    gem 'aloha_analyzer'
 
 And then execute:
 
@@ -14,13 +14,13 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install aloha
+    $ gem install aloha_analyzer
 
 ## Usage
 
 ```ruby
-analyser = Aloha::Analyse.new(username, { credentials: credentials })
-analyser.calculate!
+aloha = AlohaAnalyser::Follower.new(username, { credentials: credentials })
+alohas.calculate!
 ```
 
 ## Contributing

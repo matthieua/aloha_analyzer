@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AlohaAnalyzer::VERSION
   spec.authors       = ["Matthieu Aussaguel"]
   spec.email         = ["matthieu.aussaguel@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Analyze twitter followers languages}
+  spec.summary       = %q{Analyze twitter followers languages}
   spec.homepage      = ""
   spec.license       = "MIT"
 

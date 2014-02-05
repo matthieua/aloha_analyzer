@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Aloha do
+describe AlohaAnalyzer do
 end

@@ -1,8 +1,9 @@
-module Aloha
-  class Analyzer
+module AlohaAnalyzer
+  class Follower
     attr_reader :screen_name, :cursor, :languages
+
     def initialize(screen_name, options = {})
-      @screen_name    = screen_name
+      @screen_name = screen_name
       @cursor      = options[:cursor] || -1
       @languages   = options[:languages] || Hash.new(0)
       @credentials = options[:credentials]
@@ -40,7 +41,7 @@ module Aloha
         consumer_secret:      @credentials[:consumer_secret],
         access_token:         @credentials[:access_token],
         access_token_secret:  @credentials[:access_token_secret]
-      )
+        )
     end
 
     def increment(language)

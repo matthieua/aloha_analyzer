@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Aloha::Analyzer do
+describe AlohaAnalyzer::Follower do
   subject(:follower) { described_class.new(screen_name, options) }
   let(:screen_name)     { 'mattaussaguel'  }
 

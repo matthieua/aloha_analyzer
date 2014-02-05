@@ -3,7 +3,7 @@ require 'debugger'
 require 'bundler/setup'
 
 require 'twitter'
-require 'aloha'
+require 'aloha_analyzer'
 require 'webmock/rspec'
 
 

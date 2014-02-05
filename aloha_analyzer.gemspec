@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'aloha/version'
+require 'aloha_analyzer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "aloha"
-  spec.version       = Aloha::VERSION
+  spec.name          = "aloha_analyzer"
+  spec.version       = AlohaAnalyzer::VERSION
   spec.authors       = ["Matthieu Aussaguel"]
   spec.email         = ["matthieu.aussaguel@gmail.com"]
   spec.description   = %q{TODO: Write a gem description}

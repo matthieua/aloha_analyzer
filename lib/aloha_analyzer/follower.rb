@@ -45,6 +45,7 @@ module AlohaAnalyzer
     end
 
     def increment(language)
+      @languages[language] = @languages[language] || 0
       @languages[language] += 1
     end
   end

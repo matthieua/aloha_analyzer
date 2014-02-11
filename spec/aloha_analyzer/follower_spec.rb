@@ -71,7 +71,7 @@ describe AlohaAnalyzer::Follower do
     end
   end
 
-  describe '#calculate!' do
+  describe '#analyze!' do
     let(:followers) do
       {
         "users" => [
@@ -103,13 +103,13 @@ describe AlohaAnalyzer::Follower do
 
     context 'when first call' do
       it 'sets the next cursor' do
-        subject.calculate!
+        subject.analyze!
 
         subject.cursor.should eq next_cursor
       end
 
       it 'calculates the langauges stats' do
-        subject.calculate!
+        subject.analyze!
 
         subject.languages.should eq(
           'en' => 2,
@@ -119,7 +119,7 @@ describe AlohaAnalyzer::Follower do
       end
 
       it 'updates the count value' do
-        subject.calculate!
+        subject.analyze!
 
         subject.count.should eq 4
       end
@@ -127,7 +127,7 @@ describe AlohaAnalyzer::Follower do
       it 'creates a new twitter client' do
         Twitter::REST::Client.should_receive(:new).and_call_original
 
-        subject.calculate!
+        subject.analyze!
       end
     end
 
@@ -156,7 +156,7 @@ describe AlohaAnalyzer::Follower do
       let(:new_body) { new_followers.to_json }
 
       before do
-        subject.calculate!
+        subject.analyze!
 
         stub_get('/1.1/followers/list.json')
           .with(query: new_query_args)
@@ -165,13 +165,13 @@ describe AlohaAnalyzer::Follower do
       end
 
       it 'sets the next cursor' do
-        subject.calculate!
+        subject.analyze!
 
         subject.cursor.should eq new_next_cursor
       end
 
       it 'calculates the langauges stats' do
-        subject.calculate!
+        subject.analyze!
 
         subject.languages.should eq(
           'en' => 2,
@@ -182,7 +182,7 @@ describe AlohaAnalyzer::Follower do
       end
 
       it 'updates the count value' do
-        subject.calculate!
+        subject.analyze!
 
         subject.count.should eq 8
       end
@@ -190,7 +190,7 @@ describe AlohaAnalyzer::Follower do
       it 'does not create another twitter client' do
         Twitter::REST::Client.should_not_receive(:new)
 
-        subject.calculate!
+        subject.analyze!
       end
     end
   end

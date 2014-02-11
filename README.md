@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ```ruby
 aloha = AlohaAnalyser::Follower.new(username, { credentials: credentials })
-alohas.calculate!
+aloha.analyze!
 ```
 
 ## Contributing

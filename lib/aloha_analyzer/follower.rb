@@ -17,7 +17,7 @@ module AlohaAnalyzer
       counter
     end
 
-    def calculate!
+    def analyze!
       response = client.followers(@screen_name, request_options).to_h
       response[:users].each do |follower|
         increment follower[:lang]
@@ -41,7 +41,7 @@ module AlohaAnalyzer
         consumer_secret:      @credentials[:consumer_secret],
         access_token:         @credentials[:access_token],
         access_token_secret:  @credentials[:access_token_secret]
-        )
+      )
     end
 
     def increment(language)

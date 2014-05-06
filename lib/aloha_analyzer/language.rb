@@ -2,7 +2,8 @@ require 'yaml'
 
 module AlohaAnalyzer
   class Language
-    LANGUAGES        = YAML::load(File.open('config/language.yml'))
+
+    LANGUAGES        = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/language.yml'))
     TOTAL_POPULATION = 750_000_000
 
     def self.all

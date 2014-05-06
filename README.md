@@ -19,7 +19,7 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-aloha = AlohaAnalyser::Follower.new(username, { credentials: credentials })
+aloha = AlohaAnalyser::User.new(username, { credentials: credentials })
 aloha.analyze!
 ```
 

@@ -4,7 +4,7 @@ module AlohaAnalyzer
     attr_reader :language
 
     def initialize(language, users)
-      @language    = language
+      @language    = language.downcase
       @users       = users
       @users_count = users.size
       clean_language!
@@ -29,7 +29,7 @@ module AlohaAnalyzer
           else
             languages[abbreviation] = {
               'count'      => 1,
-              'population' => Language.find_by_abbreviation(abbreviation)['population']
+              'language'   => Language.find_by_abbreviation(abbreviation)
             }
           end
           languages[abbreviation]['percentage'] = ((100 / @users_count.to_f) * languages[abbreviation]['count']).round
@@ -47,7 +47,7 @@ module AlohaAnalyzer
             else
               languages[abbreviation] = {
                 'count'      => 1,
-                'population' => Language.find_by_abbreviation(abbreviation)['population']
+                'language'   => Language.find_by_abbreviation(abbreviation)
               }
             end
             languages[abbreviation]['percentage'] = ((100 / users_total_without_user_language.to_f) * languages[abbreviation]['count']).round
@@ -76,8 +76,8 @@ module AlohaAnalyzer
 
     def clean_users_languages!
       @users.map! do |user|
-        if Language.aliases.keys.include?(user['lang'])
-          user['lang'] = Language.aliases[user['lang']]
+        if Language.aliases.keys.include?(user['lang'].downcase)
+          user['lang'] = Language.aliases[user['lang'].downcase]
         end
         user
       end

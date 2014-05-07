@@ -14,7 +14,7 @@
   name:       Spanish
   population: 95_000_000
 - abbreviation: de
-  name:       'German'
+  name:       German
   population: 5_000_000
 - abbreviation: it
   name:       Italian
@@ -38,7 +38,7 @@
   name:       Dutch
   population: 8_000_000
 - abbreviation: fil
-  name:       Filipino
+  name:       Tagalog
   population: 8_000_000
 - abbreviation: msa
   name:       Malay

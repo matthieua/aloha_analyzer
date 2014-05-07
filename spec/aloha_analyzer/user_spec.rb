@@ -77,17 +77,17 @@ describe AlohaAnalyzer::User do
             'en' => {
               'percentage' => 50,
               'count'      => 2,
-              'population' => 238_000_000,
+              'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000},
             },
             'fr' => {
               'percentage' => 25,
               'count'      => 1,
-              'population' => 14_000_000,
+              'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000},
             },
             'de' => {
               'percentage' => 25,
               'count'      => 1,
-              'population' => 5_000_000,
+              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
             }
           }
         end
@@ -97,12 +97,12 @@ describe AlohaAnalyzer::User do
             'fr' => {
               'percentage' => 50,
               'count'      => 1,
-              'population' => 14_000_000,
+              'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000},
             },
             'de' => {
               'percentage' => 50,
               'count'      => 1,
-              'population' => 5_000_000,
+              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
             }
           )
         end
@@ -125,7 +125,7 @@ describe AlohaAnalyzer::User do
             'en' => {
               'percentage' => 100,
               'count'      => 2,
-              'population' => 238_000_000,
+              'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000},
             }
           }
         end
@@ -152,12 +152,12 @@ describe AlohaAnalyzer::User do
             'fr' => {
               'percentage' => 50,
               'count'      => 1,
-              'population' => 14_000_000,
+              'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000},
             },
             'de' => {
               'percentage' => 50,
               'count'      => 1,
-              'population' => 5_000_000,
+              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
             }
           }
         end
@@ -167,12 +167,12 @@ describe AlohaAnalyzer::User do
             'fr' => {
               'percentage' => 50,
               'count'      => 1,
-              'population' => 14_000_000,
+              'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000 },
             },
             'de' => {
               'percentage' => 50,
               'count'      => 1,
-              'population' => 5_000_000,
+              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
             }
           )
         end
@@ -184,7 +184,7 @@ describe AlohaAnalyzer::User do
             [
               {'lang' => 'en'},
               {'lang' => 'fr'},
-              {'lang' => 'en-gb'}
+              {'lang' => 'en-GB'}
             ]
           }
 
@@ -193,12 +193,12 @@ describe AlohaAnalyzer::User do
               'en' => {
                 'percentage' => 67,
                 'count'      => 2,
-                'population' => 238_000_000,
+                'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000},
               },
               'fr' => {
                 'percentage' => 33,
                 'count'      => 1,
-                'population' => 14_000_000
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000}
               }
             }
 
@@ -206,7 +206,7 @@ describe AlohaAnalyzer::User do
               'fr' => {
                 'percentage' => 100,
                 'count'      => 1,
-                'population' => 14_000_000
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000}
               }
             )
           end
@@ -227,12 +227,12 @@ describe AlohaAnalyzer::User do
               'zh' => {
                 'percentage' => 75,
                 'count'      => 3,
-                'population' => 20000,
+                'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000}
               },
               'en' => {
                 'percentage' => 25,
                 'count'      => 1,
-                'population' => 238000000
+                'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000}
               }
             }
 
@@ -240,7 +240,7 @@ describe AlohaAnalyzer::User do
               'zh' => {
                 'percentage' => 100,
                 'count'      => 3,
-                'population' => 20000
+                'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000}
               }
             )
           end

@@ -45,8 +45,9 @@ describe AlohaAnalyzer::Language do
 
     context 'when it does not exist' do
       let(:abbreviation) { 'esperanto' }
-      it 'returns nil' do
-        subject.should be_nil
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error
       end
     end
   end

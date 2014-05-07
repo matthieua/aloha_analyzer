@@ -18,7 +18,8 @@ module AlohaAnalyzer
       {
         'en-gb' => 'en',
         'zh-cb' => 'zh',
-        'zh-tw' => 'zh'
+        'zh-tw' => 'zh',
+        'ca'    => 'es'
       }
     end
 
@@ -26,7 +27,7 @@ module AlohaAnalyzer
       all.each do |language|
         return language if language['abbreviation'] == abbreviation
       end
-      nil
+      raise "Could not find language abbreviation '#{abbreviation}'"
     end
   end
 end

@@ -1,81 +1,108 @@
 - abbreviation: fr
   name:       French
   population: 14_000_000
+  countries: 'France'
 - abbreviation: en
   name:       English
   population: 238_000_000
+  countries: 'United States'
 - abbreviation: ar
   name:       Arabic
   population: 42_000_000
+  countries: 'Egypt'
 - abbreviation: ja
   name:       Japanese
   population: 106_580_000
+  countries: 'Japan'
 - abbreviation: es
   name:       Spanish
   population: 95_000_000
+  countries: 'Spain'
 - abbreviation: de
   name:       German
   population: 5_000_000
+  countries: 'Germany'
 - abbreviation: it
   name:       Italian
   population: 8_000_000
+  countries: 'Italy'
 - abbreviation: id
   name:       Indonesian
   population: 20_000_000
+  countries: 'Indonesia'
 - abbreviation: pt
   name:       Portuguese
   population: 42_000_000
+  countries: 'Portugal'
 - abbreviation: ko
   name:       Korean
   population: 7_000_000
+  countries: 'Korea'
 - abbreviation: tr
   name:       Turkish
   population: 14_000_000
+  countries: 'Turkey'
 - abbreviation: ru
   name:       Russian
   population: 5_000_000
+  countries: 'Russian'
 - abbreviation: nl
   name:       Dutch
   population: 8_000_000
+  countries: 'The Netherlands'
 - abbreviation: fil
   name:       Tagalog
+  countries: 'Philipines'
   population: 8_000_000
 - abbreviation: msa
   name:       Malay
   population: 50_000_000
+  countries: 'Malaysia'
 - abbreviation: zh
   name:       Chinese
   population: 20_000
+  countries: 'China'
 - abbreviation: hi
   name:       Hindi
   population: 12_000_000
+  countries: 'India'
 - abbreviation: 'no'
   name:       Norwegian
   population: 300_000
+  countries: 'Norway'
 - abbreviation: sv
   name:       Swedish
   population: 500_000
+  countries: 'Swedish'
 - abbreviation: fi
   name:       Finnish
   population: 100_000
+  countries: 'Finnish'
 - abbreviation: da
   name:       Danish
   population: 200_000
+  countries: 'Danish'
 - abbreviation: pl
   name:       Polish
   population: 300_000
+  countries: 'Poland'
 - abbreviation: hu
   name:       Hungarian
   population: 1_000_000
+  countries: 'Hunagary'
 - abbreviation: fa
   name:       Farsi
   population: 1_000_000
+  countries: 'Iran'
 - abbreviation: he
   name:       Hebrew
   population: 1_000_000
+  countries: 'Israel'
 - abbreviation: ur
   name:       Urdu
   population: 1_000_000
+  countries: 'Pakistan'
 - abbreviation: th
   name:       Thai
   population: 7_0000_000
+  countries: 'Thailand'

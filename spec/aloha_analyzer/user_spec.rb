@@ -49,11 +49,13 @@ describe AlohaAnalyzer::User do
       end
 
       it 'has no results with the user language' do
-        subject[:with_user_language].should eq({})
+        subject[:with_user_language]['languages'].should eq({})
+        subject[:with_user_language]['count'].should eq 0
       end
 
       it 'has no results without the user language' do
-        subject[:without_user_language].should eq({})
+        subject[:without_user_language]['languages'].should eq({})
+        subject[:without_user_language]['count'].should eq 0
       end
     end
 
@@ -74,35 +76,41 @@ describe AlohaAnalyzer::User do
 
         it 'returns results based on the user language' do
           subject[:with_user_language].should == {
-            'en' => {
-              'percentage' => 50,
-              'count'      => 2,
-              'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000},
-            },
-            'fr' => {
-              'percentage' => 25,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000},
-            },
-            'de' => {
-              'percentage' => 25,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
+            'count' => 4,
+            'languages' => {
+              'en' => {
+                'percentage' => 50,
+                'count'      => 2,
+                'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, "countries"=>"United States"},
+              },
+              'fr' => {
+                'percentage' => 25,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, "countries"=>"France"},
+              },
+              'de' => {
+                'percentage' => 25,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, "countries"=>"Germany"}
+              }
             }
           }
         end
 
         it 'returns results results based on the non user language' do
           subject[:without_user_language].should eq(
-            'fr' => {
-              'percentage' => 50,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000},
-            },
-            'de' => {
-              'percentage' => 50,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
+            'count' => 2,
+            'languages' => {
+              'fr' => {
+                'percentage' => 50,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'},
+              },
+              'de' => {
+                'percentage' => 50,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany'}
+              }
             }
           )
         end
@@ -122,16 +130,20 @@ describe AlohaAnalyzer::User do
 
         it 'returns results based on the user language' do
           subject[:with_user_language].should == {
-            'en' => {
-              'percentage' => 100,
-              'count'      => 2,
-              'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000},
+            'count' => 2,
+            'languages' => {
+              'en' => {
+                'percentage' => 100,
+                'count'      => 2,
+                'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'United States'},
+              }
             }
           }
         end
 
         it 'returns results results based on the non user language' do
-          subject[:without_user_language].should == {}
+          subject[:without_user_language]['languages'].should == {}
+          subject[:without_user_language]['count'].should eq 0
         end
       end
 
@@ -149,30 +161,36 @@ describe AlohaAnalyzer::User do
 
         it 'returns results based on the user language' do
           subject[:with_user_language].should == {
-            'fr' => {
-              'percentage' => 50,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000},
-            },
-            'de' => {
-              'percentage' => 50,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
+            'count' => 2,
+            'languages' => {
+              'fr' => {
+                'percentage' => 50,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'},
+              },
+              'de' => {
+                'percentage' => 50,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany'}
+              }
             }
           }
         end
 
         it 'returns results results based on the non user language' do
           subject[:without_user_language].should eq(
-            'fr' => {
-              'percentage' => 50,
-              'count'      => 1,
-              'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000 },
-            },
-            'de' => {
-              'percentage' => 50,
-              'count'      => 1,
-              'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000}
+            'count'     => 2,
+            'languages' => {
+              'fr' => {
+                'percentage' => 50,
+                'count'      => 1,
+                'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France' },
+              },
+              'de' => {
+                'percentage' => 50,
+                'count'      => 1,
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany' }
+              }
             }
           )
         end
@@ -190,23 +208,29 @@ describe AlohaAnalyzer::User do
 
           it 'merges english and british' do
             subject[:with_user_language].should == {
-              'en' => {
-                'percentage' => 67,
-                'count'      => 2,
-                'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000},
-              },
-              'fr' => {
-                'percentage' => 33,
-                'count'      => 1,
-                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000}
+              'count' => 3,
+              'languages' => {
+                'en' => {
+                  'percentage' => 66.67,
+                  'count'      => 2,
+                  'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'United States' },
+                },
+                'fr' => {
+                  'percentage' => 33.33,
+                  'count'      => 1,
+                  'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'}
+                }
               }
             }
 
             subject[:without_user_language].should eq(
-              'fr' => {
-                'percentage' => 100,
-                'count'      => 1,
-                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000}
+              'count' => 1,
+              'languages' => {
+                'fr' => {
+                  'percentage' => 100,
+                  'count'      => 1,
+                  'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'}
+                }
               }
             )
           end
@@ -224,23 +248,29 @@ describe AlohaAnalyzer::User do
 
           it 'merges chinese' do
             subject[:with_user_language].should == {
-              'zh' => {
-                'percentage' => 75,
-                'count'      => 3,
-                'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000}
-              },
-              'en' => {
-                'percentage' => 25,
-                'count'      => 1,
-                'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000}
+              'count' => 4,
+              'languages' => {
+                'zh' => {
+                  'percentage' => 75,
+                  'count'      => 3,
+                  'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000, 'countries' => 'China' }
+                },
+                'en' => {
+                  'percentage' => 25,
+                  'count'      => 1,
+                  'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'United States' }
+                }
               }
             }
 
             subject[:without_user_language].should eq(
-              'zh' => {
-                'percentage' => 100,
-                'count'      => 3,
-                'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000}
+              'count' => 3,
+              'languages' => {
+                'zh' => {
+                  'percentage' => 100,
+                  'count'      => 3,
+                  'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000, 'countries' => 'China' }
+                }
               }
             )
           end

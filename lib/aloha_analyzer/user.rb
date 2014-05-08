@@ -22,35 +22,43 @@ module AlohaAnalyzer
 
     def with_user_language
       @with_user_language ||= Hash.new.tap do |languages|
+        languages['count']     = 0
+        languages['languages'] = Hash.new
+
         @users.each do |user|
           abbreviation = user['lang']
-          if languages[abbreviation]
-            languages[abbreviation]['count'] += 1
+          if languages['languages'][abbreviation]
+            languages['languages'][abbreviation]['count'] += 1
           else
-            languages[abbreviation] = {
+            languages['languages'][abbreviation] = {
               'count'      => 1,
               'language'   => Language.find_by_abbreviation(abbreviation)
             }
           end
-          languages[abbreviation]['percentage'] = ((100 / @users_count.to_f) * languages[abbreviation]['count']).round
+          languages['languages'][abbreviation]['percentage'] = ((100 / @users_count.to_f) * languages['languages'][abbreviation]['count']).round(2)
+          languages['count'] += 1
         end
       end
     end
 
     def without_user_language
       @without_user_language ||= Hash.new.tap do |languages|
+        languages['count']     = 0
+        languages['languages'] = Hash.new
+
         @users.each do |user|
           abbreviation = user['lang']
           if abbreviation != @language
-            if languages[abbreviation]
-              languages[abbreviation]['count'] += 1
+            if languages['languages'][abbreviation]
+              languages['languages'][abbreviation]['count'] += 1
             else
-              languages[abbreviation] = {
+              languages['languages'][abbreviation] = {
                 'count'      => 1,
                 'language'   => Language.find_by_abbreviation(abbreviation)
               }
             end
-            languages[abbreviation]['percentage'] = ((100 / users_total_without_user_language.to_f) * languages[abbreviation]['count']).round
+            languages['languages'][abbreviation]['percentage'] = ((100 / users_total_without_user_language.to_f) * languages['languages'][abbreviation]['count']).round(2)
+            languages['count'] += 1
           end
         end
       end
@@ -61,8 +69,8 @@ module AlohaAnalyzer
     end
 
     def user_language_count
-      @user_language_count ||= if with_user_language[@language]
-        with_user_language[@language]['count']
+      @user_language_count ||= if with_user_language['languages'][@language]
+        with_user_language['languages'][@language]['count']
       else
         0
       end

@@ -57,6 +57,12 @@ describe AlohaAnalyzer::User do
         subject[:without_user_language]['languages'].should eq({})
         subject[:without_user_language]['count'].should eq 0
       end
+
+      it 'includes the user lanugage' do
+        subject[:user_language].should eq(
+          "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+        )
+      end
     end
 
     context 'when users' do
@@ -72,6 +78,12 @@ describe AlohaAnalyzer::User do
 
         it 'returns a hash' do
           subject.should be_a Hash
+        end
+
+        it 'includes the user lanugage' do
+          subject[:user_language].should eq(
+            "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+          )
         end
 
         it 'returns results based on the user language' do
@@ -133,6 +145,12 @@ describe AlohaAnalyzer::User do
           subject.should be_a Hash
         end
 
+        it 'includes the user lanugage' do
+          subject[:user_language].should eq(
+            "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+          )
+        end
+
         it 'returns results based on the user language' do
           subject[:with_user_language].should == {
             'count' => 2,
@@ -163,6 +181,12 @@ describe AlohaAnalyzer::User do
 
         it 'returns a hash' do
           subject.should be_a Hash
+        end
+
+        it 'includes the user lanugage' do
+          subject[:user_language].should eq(
+            "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+          )
         end
 
         it 'returns results based on the user language' do
@@ -215,6 +239,12 @@ describe AlohaAnalyzer::User do
               {'id' => '3', 'lang' => 'en-GB'}
             ]
           }
+
+          it 'includes the user lanugage' do
+            subject[:user_language].should eq(
+              "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+            )
+          end
 
           it 'merges english and british' do
             subject[:with_user_language].should == {

@@ -13,6 +13,7 @@ module AlohaAnalyzer
 
     def analyze
       {
+        user_language:         Language.find_by_abbreviation(@language),
         with_user_language:    with_user_language,
         without_user_language: without_user_language
       }

@@ -15,7 +15,7 @@ describe AlohaAnalyzer::User do
     end
 
     context 'when language is simplified chinese' do
-      let(:language) { 'zh-cb' }
+      let(:language) { 'zh-cn' }
 
       it 'changes to chinese' do
         subject.language.should eq 'zh'
@@ -282,8 +282,8 @@ describe AlohaAnalyzer::User do
         context 'and some users are chinese' do
           let(:users) {
             [
-              {'id' => '1', 'lang' => 'zh-cb'},
-              {'id' => '2', 'lang' => 'zh-cb'},
+              {'id' => '1', 'lang' => 'zh-cn'},
+              {'id' => '2', 'lang' => 'zh-cn'},
               {'id' => '3', 'lang' => 'en'},
               {'id' => '4', 'lang' => 'zh-tw'}
             ]

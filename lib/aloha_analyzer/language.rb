@@ -17,7 +17,7 @@ module AlohaAnalyzer
     def self.aliases
       {
         'en-gb' => 'en',
-        'zh-cb' => 'zh',
+        'zh-cn' => 'zh',
         'zh-tw' => 'zh',
         'ca'    => 'es',
         'xx-lc' => 'en',

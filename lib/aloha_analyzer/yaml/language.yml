@@ -1,31 +1,31 @@
 - abbreviation: fr
   name:       French
   population: 14_000_000
-  countries: 'France'
+  countries: 'France, Canada, Belgium, Switzerland'
 - abbreviation: en
   name:       English
   population: 238_000_000
-  countries: 'United States'
+  countries: 'USA, Canada, UK, Ireland, Australia'
 - abbreviation: ar
   name:       Arabic
   population: 42_000_000
-  countries: 'Egypt'
+  countries: 'Egypt, Tunisia, Lebanon, United Arab Emirates'
 - abbreviation: ja
   name:       Japanese
   population: 106_580_000
-  countries: 'Japan'
+  countries: 'Japan, Brazil'
 - abbreviation: es
   name:       Spanish
   population: 95_000_000
-  countries: 'Spain'
+  countries: 'Spain, Mexico, Argentina, Chile'
 - abbreviation: de
   name:       German
   population: 5_000_000
-  countries: 'Germany'
+  countries: 'Germany, Austria, Switzerland, Belgium'
 - abbreviation: it
   name:       Italian
   population: 8_000_000
-  countries: 'Italy'
+  countries: 'Italy, Switzerland, Malta'
 - abbreviation: id
   name:       Indonesian
   population: 20_000_000
@@ -33,11 +33,11 @@
 - abbreviation: pt
   name:       Portuguese
   population: 42_000_000
-  countries: 'Portugal'
+  countries: 'Portugal, Brazil, Macau'
 - abbreviation: ko
   name:       Korean
   population: 7_000_000
-  countries: 'Korea'
+  countries: 'South Korea'
 - abbreviation: tr
   name:       Turkish
   population: 14_000_000
@@ -45,27 +45,27 @@
 - abbreviation: ru
   name:       Russian
   population: 5_000_000
-  countries: 'Russian'
+  countries: 'Russia, Belarus, Kazakhstan, Kyrgyzstan'
 - abbreviation: nl
   name:       Dutch
   population: 8_000_000
-  countries: 'The Netherlands'
+  countries: 'Netherlands, Belgium'
 - abbreviation: fil
   name:       Tagalog
-  countries: 'Philipines'
+  countries: 'Philippines'
   population: 8_000_000
 - abbreviation: msa
   name:       Malay
   population: 50_000_000
-  countries: 'Malaysia'
+  countries: 'Malaysia, Singapore, Brunei'
 - abbreviation: zh
   name:       Chinese
   population: 20_000
-  countries: 'China'
+  countries: 'China, Hong-Kong, Macau'
 - abbreviation: hi
   name:       Hindi
   population: 12_000_000
-  countries: 'India'
+  countries: 'India, Pakistan, Fiji'
 - abbreviation: 'no'
   name:       Norwegian
   population: 300_000
@@ -73,7 +73,7 @@
 - abbreviation: sv
   name:       Swedish
   population: 500_000
-  countries: 'Swedish'
+  countries: 'Sweden'
 - abbreviation: fi
   name:       Finnish
   population: 100_000
@@ -89,11 +89,11 @@
 - abbreviation: hu
   name:       Hungarian
   population: 1_000_000
-  countries: 'Hunagary'
+  countries: 'Hungary'
 - abbreviation: fa
   name:       Farsi
   population: 1_000_000
-  countries: 'Iran'
+  countries: 'Iran, Afghanistan, Tajikistan'
 - abbreviation: he
   name:       Hebrew
   population: 1_000_000
@@ -101,8 +101,24 @@
 - abbreviation: ur
   name:       Urdu
   population: 1_000_000
-  countries: 'Pakistan'
+  countries: 'India, Pakistan, Fiji'
 - abbreviation: th
   name:       Thai
   population: 7_0000_000
   countries: 'Thailand'
+- abbreviation: uk
+  name:       Ukranian
+  population: 1_0000_000
+  countries: 'Ukraine'
+- abbreviation: el
+  name:       Greek
+  population: 1_0000_000
+  countries: 'Greece, Cyprus'
+- abbreviation: el
+  name:       Czech
+  population: 1_0000_000
+  countries: 'Czech Republic'
+- abbreviation: ro
+  name:       Romanian
+  population: 1_0000_000
+  countries: 'Romania, Serbia, Moldova'

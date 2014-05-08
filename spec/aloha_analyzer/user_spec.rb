@@ -63,10 +63,10 @@ describe AlohaAnalyzer::User do
       context 'and no aliases' do
         let(:users) {
           [
-            {'lang' => 'en'},
-            {'lang' => 'fr'},
-            {'lang' => 'en'},
-            {'lang' => 'de'}
+            {'id' => '1', 'lang' => 'en'},
+            {'id' => '2', 'lang' => 'fr'},
+            {'id' => '3', 'lang' => 'en'},
+            {'id' => '4', 'lang' => 'de'}
           ]
         }
 
@@ -81,17 +81,20 @@ describe AlohaAnalyzer::User do
               'en' => {
                 'percentage' => 50,
                 'count'      => 2,
-                'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, "countries"=>"United States"},
+                'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"},
+                'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
               },
               'fr' => {
                 'percentage' => 25,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, "countries"=>"France"},
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, "countries"=>"France, Canada, Belgium, Switzerland"},
+                'users'      => [{'id' => '2', 'lang' => 'fr'}]
               },
               'de' => {
                 'percentage' => 25,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, "countries"=>"Germany"}
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, "countries"=>"Germany, Austria, Switzerland, Belgium"},
+                'users'      => [{'id' => '4', 'lang' => 'de'}]
               }
             }
           }
@@ -104,12 +107,14 @@ describe AlohaAnalyzer::User do
               'fr' => {
                 'percentage' => 50,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'},
+                'language'   => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
+                'users'      => [{'id' => '2', 'lang' => 'fr'}]
               },
               'de' => {
                 'percentage' => 50,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany'}
+                'language'   => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany, Austria, Switzerland, Belgium'},
+                'users'      => [{'id' => '4', 'lang' => 'de'}]
               }
             }
           )
@@ -119,8 +124,8 @@ describe AlohaAnalyzer::User do
       context 'when only user langugages users' do
         let(:users) {
           [
-            {'lang' => 'en'},
-            {'lang' => 'en'}
+            {'id' => '1', 'lang' => 'en'},
+            {'id' => '2', 'lang' => 'en'}
           ]
         }
 
@@ -135,7 +140,8 @@ describe AlohaAnalyzer::User do
               'en' => {
                 'percentage' => 100,
                 'count'      => 2,
-                'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'United States'},
+                'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, Canada, UK, Ireland, Australia'},
+                'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '2', 'lang' => 'en'}]
               }
             }
           }
@@ -150,8 +156,8 @@ describe AlohaAnalyzer::User do
       context 'when no users language users' do
         let(:users) {
           [
-            {'lang' => 'de'},
-            {'lang' => 'fr'}
+            {'id' => '1', 'lang' => 'de'},
+            {'id' => '2', 'lang' => 'fr'}
           ]
         }
 
@@ -166,12 +172,14 @@ describe AlohaAnalyzer::User do
               'fr' => {
                 'percentage' => 50,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'},
+                'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
+                'users' => [{'id' => '2', 'lang' => 'fr'}]
               },
               'de' => {
                 'percentage' => 50,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany'}
+                'language'   => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany, Austria, Switzerland, Belgium'},
+                'users'      => [{'id' => '1', 'lang' => 'de'}]
               }
             }
           }
@@ -184,12 +192,14 @@ describe AlohaAnalyzer::User do
               'fr' => {
                 'percentage' => 50,
                 'count'      => 1,
-                'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France' },
+                'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
+                'users' => [{'id' => '2', 'lang' => 'fr'}]
               },
               'de' => {
                 'percentage' => 50,
                 'count'      => 1,
-                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany' }
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany, Austria, Switzerland, Belgium' },
+                'users'      => [{'id' => '1', 'lang' => 'de'}]
               }
             }
           )
@@ -200,9 +210,9 @@ describe AlohaAnalyzer::User do
         context 'and some users british' do
           let(:users) {
             [
-              {'lang' => 'en'},
-              {'lang' => 'fr'},
-              {'lang' => 'en-GB'}
+              {'id' => '1', 'lang' => 'en'},
+              {'id' => '2', 'lang' => 'fr'},
+              {'id' => '3', 'lang' => 'en-GB'}
             ]
           }
 
@@ -213,12 +223,14 @@ describe AlohaAnalyzer::User do
                 'en' => {
                   'percentage' => 66.67,
                   'count'      => 2,
-                  'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'United States' },
+                  'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, Canada, UK, Ireland, Australia' },
+                  'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
                 },
                 'fr' => {
                   'percentage' => 33.33,
                   'count'      => 1,
-                  'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'}
+                  'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
+                  'users'      => [{'id' => '2', 'lang' => 'fr'}]
                 }
               }
             }
@@ -229,7 +241,8 @@ describe AlohaAnalyzer::User do
                 'fr' => {
                   'percentage' => 100,
                   'count'      => 1,
-                  'language' => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France'}
+                  'language'   => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
+                  'users'      => [{'id' => '2', 'lang' => 'fr'}]
                 }
               }
             )
@@ -239,10 +252,10 @@ describe AlohaAnalyzer::User do
         context 'and some users are chinese' do
           let(:users) {
             [
-              {'lang' => 'zh-cb'},
-              {'lang' => 'zh-cb'},
-              {'lang' => 'en'},
-              {'lang' => 'zh-tw'}
+              {'id' => '1', 'lang' => 'zh-cb'},
+              {'id' => '2', 'lang' => 'zh-cb'},
+              {'id' => '3', 'lang' => 'en'},
+              {'id' => '4', 'lang' => 'zh-tw'}
             ]
           }
 
@@ -253,12 +266,14 @@ describe AlohaAnalyzer::User do
                 'zh' => {
                   'percentage' => 75,
                   'count'      => 3,
-                  'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000, 'countries' => 'China' }
+                  'language'   => {'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000, 'countries' => 'China, Hong-Kong, Macau' },
+                  'users'      => [{'id' => '1', 'lang' => 'zh'}, {'id' => '2', 'lang' => 'zh'}, {'id' => '4', 'lang' => 'zh'}]
                 },
                 'en' => {
                   'percentage' => 25,
                   'count'      => 1,
-                  'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'United States' }
+                  'language'=>{'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, Canada, UK, Ireland, Australia' },
+                  'users' => [{'id' => '3', 'lang' => 'en'},]
                 }
               }
             }
@@ -269,7 +284,8 @@ describe AlohaAnalyzer::User do
                 'zh' => {
                   'percentage' => 100,
                   'count'      => 3,
-                  'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000, 'countries' => 'China' }
+                  'language'=>{'abbreviation'=>'zh', 'name'=>'Chinese', 'population'=>20000, 'countries' => 'China, Hong-Kong, Macau' },
+                  'users' => [{'id' => '1', 'lang' => 'zh'}, {'id' => '2', 'lang' => 'zh'}, {'id' => '4', 'lang' => 'zh'}]
                 }
               }
             )

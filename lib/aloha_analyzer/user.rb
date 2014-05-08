@@ -29,10 +29,12 @@ module AlohaAnalyzer
           abbreviation = user['lang']
           if languages['languages'][abbreviation]
             languages['languages'][abbreviation]['count'] += 1
+            languages['languages'][abbreviation]['users'].push user
           else
             languages['languages'][abbreviation] = {
-              'count'      => 1,
-              'language'   => Language.find_by_abbreviation(abbreviation)
+              'count'    => 1,
+              'language' => Language.find_by_abbreviation(abbreviation),
+              'users'    => [user]
             }
           end
           languages['languages'][abbreviation]['percentage'] = ((100 / @users_count.to_f) * languages['languages'][abbreviation]['count']).round(2)
@@ -51,10 +53,12 @@ module AlohaAnalyzer
           if abbreviation != @language
             if languages['languages'][abbreviation]
               languages['languages'][abbreviation]['count'] += 1
+              languages['languages'][abbreviation]['users'].push user
             else
               languages['languages'][abbreviation] = {
-                'count'      => 1,
-                'language'   => Language.find_by_abbreviation(abbreviation)
+                'count'    => 1,
+                'language' => Language.find_by_abbreviation(abbreviation),
+                'users'    => [user]
               }
             end
             languages['languages'][abbreviation]['percentage'] = ((100 / users_total_without_user_language.to_f) * languages['languages'][abbreviation]['count']).round(2)

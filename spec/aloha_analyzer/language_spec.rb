@@ -41,6 +41,10 @@ describe AlohaAnalyzer::Language do
       it 'includes the language abbreviation' do
         subject['abbreviation'].should eq 'fr'
       end
+
+      it 'includes the languages coutnries' do
+        subject['countries'].should eq 'France, Canada, Belgium, Switzerland'
+      end
     end
 
     context 'when it does not exist' do

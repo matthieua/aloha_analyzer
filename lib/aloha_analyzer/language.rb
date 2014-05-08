@@ -4,7 +4,7 @@ module AlohaAnalyzer
   class Language
 
     LANGUAGES        = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/language.yml'))
-    TOTAL_POPULATION = 750_000_000
+    TOTAL_POPULATION = 790000000
 
     def self.all
       LANGUAGES
@@ -19,7 +19,10 @@ module AlohaAnalyzer
         'en-gb' => 'en',
         'zh-cb' => 'zh',
         'zh-tw' => 'zh',
-        'ca'    => 'es'
+        'ca'    => 'es',
+        'xx-lc' => 'en',
+        'gl'    => 'es',
+        'eu'    => 'es'
       }
     end
 

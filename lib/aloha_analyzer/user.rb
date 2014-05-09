@@ -12,72 +12,41 @@ module AlohaAnalyzer
     end
 
     def analyze
-      {
-        user_language:         Language.find_by_abbreviation(@language),
-        with_user_language:    with_user_language,
-        without_user_language: without_user_language
-      }
+      boilerplate_analysis.tap do |analysys|
+        @users.each do |user|
+          abbreviation = user['lang']
+          if abbreviation == @language
+            analysys[:user_language][:count] += 1
+            analysys[:user_language][:users].push user
+          else
+            if analysys[:foreign_languages][abbreviation]
+              analysys[:foreign_languages][abbreviation][:count] += 1
+              analysys[:foreign_languages][abbreviation]['users'].push user
+            else
+              analysys[:foreign_languages][abbreviation] = {
+                :count    => 1,
+                :language => Language.find_by_abbreviation(abbreviation),
+                :users    => [user]
+              }
+            end
+            analysys[:foreign_languages_count] += 1
+          end
+        end
+      end
     end
+
 
     private
 
-    def with_user_language
-      @with_user_language ||= Hash.new.tap do |languages|
-        languages['count']     = 0
-        languages['languages'] = Hash.new
-
-        @users.each do |user|
-          abbreviation = user['lang']
-          if languages['languages'][abbreviation]
-            languages['languages'][abbreviation]['count'] += 1
-            languages['languages'][abbreviation]['users'].push user
-          else
-            languages['languages'][abbreviation] = {
-              'count'    => 1,
-              'language' => Language.find_by_abbreviation(abbreviation),
-              'users'    => [user]
-            }
-          end
-          languages['languages'][abbreviation]['percentage'] = ((100 / @users_count.to_f) * languages['languages'][abbreviation]['count']).round(2)
-          languages['count'] += 1
-        end
-      end
-    end
-
-    def without_user_language
-      @without_user_language ||= Hash.new.tap do |languages|
-        languages['count']     = 0
-        languages['languages'] = Hash.new
-
-        @users.each do |user|
-          abbreviation = user['lang']
-          if abbreviation != @language
-            if languages['languages'][abbreviation]
-              languages['languages'][abbreviation]['count'] += 1
-              languages['languages'][abbreviation]['users'].push user
-            else
-              languages['languages'][abbreviation] = {
-                'count'    => 1,
-                'language' => Language.find_by_abbreviation(abbreviation),
-                'users'    => [user]
-              }
-            end
-            languages['languages'][abbreviation]['percentage'] = ((100 / users_total_without_user_language.to_f) * languages['languages'][abbreviation]['count']).round(2)
-            languages['count'] += 1
-          end
-        end
-      end
-    end
-
-    def users_total_without_user_language
-      @users_total_without_user_language ||= @users_count - user_language_count
-    end
-
-    def user_language_count
-      @user_language_count ||= if with_user_language['languages'][@language]
-        with_user_language['languages'][@language]['count']
-      else
-        0
+    def boilerplate_analysis
+      Hash.new.tap do |analysys|
+        analysys[:user_language] = {
+          count:    0,
+          language: Language.find_by_abbreviation(@language),
+          users: []
+        }
+        analysys[:foreign_languages_count] = 0
+        analysys[:foreign_languages]       = Hash.new
       end
     end
 

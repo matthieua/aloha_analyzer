@@ -21,7 +21,7 @@ module AlohaAnalyzer
           else
             if analysys[:foreign_languages][abbreviation]
               analysys[:foreign_languages][abbreviation][:count] += 1
-              analysys[:foreign_languages][abbreviation]['users'].push user
+              analysys[:foreign_languages][abbreviation][:users].push user
             else
               analysys[:foreign_languages][abbreviation] = {
                 :count    => 1,

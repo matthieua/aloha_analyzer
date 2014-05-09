@@ -143,7 +143,8 @@ describe AlohaAnalyzer::User do
           let(:users) {
             [
               {'id' => '1', 'lang' => 'de'},
-              {'id' => '2', 'lang' => 'fr'}
+              {'id' => '2', 'lang' => 'fr'},
+              {'id' => '3', 'lang' => 'fr'}
             ]
           }
 
@@ -160,15 +161,15 @@ describe AlohaAnalyzer::User do
           end
 
           it 'includes the correct foreign_languages_count' do
-            subject[:foreign_languages_count].should eq 2
+            subject[:foreign_languages_count].should eq 3
           end
 
           it 'returns results results based on the non user language' do
             subject[:foreign_languages].should eq(
               'fr' => {
-                :count      => 1,
+                :count      => 2,
                 :language => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
-                :users => [{'id' => '2', 'lang' => 'fr'}]
+                :users => [{'id' => '2', 'lang' => 'fr'}, {'id' => '3', 'lang' => 'fr'}]
                 },
                 'de' => {
                   :count      => 1,

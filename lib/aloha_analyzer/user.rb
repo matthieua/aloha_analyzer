@@ -31,6 +31,7 @@ module AlohaAnalyzer
             end
             analysys[:foreign_languages_count] += 1
           end
+          analysys[:count] += 1
         end
       end
     end
@@ -46,6 +47,7 @@ module AlohaAnalyzer
           users: []
         }
         analysys[:foreign_languages_count] = 0
+        analysys[:count]                   = 0
         analysys[:foreign_languages]       = Hash.new
       end
     end

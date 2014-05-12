@@ -48,6 +48,10 @@ describe AlohaAnalyzer::User do
         subject.should be_a Hash
       end
 
+      it 'includes the total count' do
+        subject[:count].should eq 0
+      end
+
       it 'has no results with the user language' do
         subject[:user_language][:count].should eq 0
       end
@@ -77,6 +81,10 @@ describe AlohaAnalyzer::User do
 
         it 'returns a hash' do
           subject.should be_a Hash
+        end
+
+        it 'includes the total count' do
+          subject[:count].should eq 4
         end
 
         it 'includes the user lanugage' do
@@ -119,6 +127,10 @@ describe AlohaAnalyzer::User do
             subject.should be_a Hash
           end
 
+          it 'includes the total count' do
+            subject[:count].should eq 2
+          end
+
           it 'includes the user lanugage' do
             subject[:user_language][:language].should eq(
               "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
@@ -150,6 +162,10 @@ describe AlohaAnalyzer::User do
 
           it 'returns a hash' do
             subject.should be_a Hash
+          end
+
+          it 'includes the total count' do
+            subject[:count].should eq 3
           end
 
           it 'returns results based on the user language' do
@@ -189,6 +205,10 @@ describe AlohaAnalyzer::User do
             ]
           }
 
+          it 'includes the total count' do
+            subject[:count].should eq 3
+          end
+
           it 'includes the user lanugage' do
             subject[:user_language].should == {
               :count      => 2,
@@ -208,7 +228,7 @@ describe AlohaAnalyzer::User do
                 :language   => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
                 :users      => [{'id' => '2', 'lang' => 'fr'}]
               }
-              )
+            )
           end
         end
       end

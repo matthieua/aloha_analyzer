@@ -53,17 +53,17 @@ describe AlohaAnalyzer::User do
       end
 
       it 'has no results with the user language' do
-        subject[:user_language][:count].should eq 0
+        subject[:account_language][:count].should eq 0
       end
 
       it 'has no results without the user language' do
-        subject[:foreign_languages].should eq({})
-        subject[:foreign_languages_count].should eq 0
+        subject[:non_account_languages].should eq({})
+        subject[:non_account_languages_count].should eq 0
       end
 
       it 'includes the user lanugage' do
-        subject[:user_language][:language].should eq(
-          "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+        subject[:account_language][:language].should eq(
+          "abbreviation"=>"en", "greeting" => "hello!", "name"=>"English", "population"=>238000000, "countries"=>"USA, UK, Canada, Ireland, Australia"
           )
       end
     end
@@ -88,27 +88,27 @@ describe AlohaAnalyzer::User do
         end
 
         it 'includes the user lanugage' do
-          subject[:user_language].should eq(
+          subject[:account_language].should eq(
             :count      => 2,
-            :language   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"},
+            :language   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, "countries"=>"USA, UK, Canada, Ireland, Australia", "greeting"=>"hello!"},
             :users      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
             )
         end
 
         it 'includs the foreign followers count' do
-          subject[:foreign_languages_count].should eq 2
+          subject[:non_account_languages_count].should eq 2
         end
 
         it 'returns results based on the user language' do
-          subject[:foreign_languages].should == {
+          subject[:non_account_languages].should == {
             'fr' => {
               count: 1,
-              language: {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, "countries"=>"France, Canada, Belgium, Switzerland"},
+              language: {'abbreviation'=>'fr', 'name'=>'French', "greeting"=>"bonjour!", 'population'=>14000000, "countries"=>"France, Canada, Belgium, Switzerland"},
               users: [{'id' => '2', 'lang' => 'fr'}]
               },
               'de' => {
                 count:       1,
-                language:  {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, "countries"=>"Germany, Austria, Switzerland, Belgium"},
+                language:  {'abbreviation'=>'de', 'name'=>'German', "greeting"=>"hallo!", 'population'=>5000000, "countries"=>"Germany, Austria, Switzerland, Belgium"},
                 users:      [{'id' => '4', 'lang' => 'de'}]
               }
             }
@@ -132,22 +132,22 @@ describe AlohaAnalyzer::User do
           end
 
           it 'includes the user lanugage' do
-            subject[:user_language][:language].should eq(
-              "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"
+            subject[:account_language][:language].should eq(
+              "abbreviation"=>"en", "greeting" => "hello!", "name"=>"English", "population"=>238000000, "countries"=>"USA, UK, Canada, Ireland, Australia"
               )
           end
 
           it 'returns results based on the user language' do
-            subject[:user_language].should == {
+            subject[:account_language].should == {
               :count      => 2,
-              :language   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, Canada, UK, Ireland, Australia'},
+              :language   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, UK, Canada, Ireland, Australia', "greeting"=>"hello!"},
               :users      => [{'id' => '1', 'lang' => 'en'}, {'id' => '2', 'lang' => 'en'}]
             }
           end
 
           it 'returns results results based on the non user language' do
-            subject[:foreign_languages].should == {}
-            subject[:foreign_languages_count].should eq 0
+            subject[:non_account_languages].should == {}
+            subject[:non_account_languages_count].should eq 0
           end
         end
 
@@ -169,27 +169,27 @@ describe AlohaAnalyzer::User do
           end
 
           it 'returns results based on the user language' do
-            subject[:user_language].should == {
+            subject[:account_language].should == {
               :count      => 0,
-              :language   => {"abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia"},
+              :language   => {"abbreviation"=>"en", "greeting" => "hello!", "name"=>"English", "population"=>238000000, "countries"=>"USA, UK, Canada, Ireland, Australia"},
               :users      => []
             }
           end
 
-          it 'includes the correct foreign_languages_count' do
-            subject[:foreign_languages_count].should eq 3
+          it 'includes the correct non_account_languages_count' do
+            subject[:non_account_languages_count].should eq 3
           end
 
           it 'returns results results based on the non user language' do
-            subject[:foreign_languages].should eq(
+            subject[:non_account_languages].should eq(
               'fr' => {
                 :count      => 2,
-                :language => { 'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
+                :language => { 'abbreviation'=>'fr', 'name'=>'French', "greeting"=>"bonjour!", 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
                 :users => [{'id' => '2', 'lang' => 'fr'}, {'id' => '3', 'lang' => 'fr'}]
                 },
                 'de' => {
                   :count      => 1,
-                  :language => {'abbreviation'=>'de', 'name'=>'German', 'population'=>5000000, 'countries' => 'Germany, Austria, Switzerland, Belgium' },
+                  :language => {'abbreviation'=>'de', 'name'=>'German', "greeting"=>"hallo!", 'population'=>5000000, 'countries' => 'Germany, Austria, Switzerland, Belgium' },
                   :users      => [{'id' => '1', 'lang' => 'de'}]
                 }
                 )
@@ -210,22 +210,22 @@ describe AlohaAnalyzer::User do
           end
 
           it 'includes the user lanugage' do
-            subject[:user_language].should == {
+            subject[:account_language].should == {
               :count      => 2,
-              :language   => { "abbreviation"=>"en", "name"=>"English", "population"=>238000000, "countries"=>"USA, Canada, UK, Ireland, Australia" },
+              :language   => { "abbreviation"=>"en", "greeting" => "hello!", "name"=>"English", "population"=>238000000, "countries"=>"USA, UK, Canada, Ireland, Australia" },
               :users      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
             }
           end
 
-          it 'includes the correct foreign_languages_count' do
-            subject[:foreign_languages_count].should eq 1
+          it 'includes the correct non_account_languages_count' do
+            subject[:non_account_languages_count].should eq 1
           end
 
           it 'merges english and british' do
-            subject[:foreign_languages].should eq(
+            subject[:non_account_languages].should eq(
               'fr' => {
                 :count      => 1,
-                :language   => {'abbreviation'=>'fr', 'name'=>'French', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
+                :language   => {'abbreviation'=>'fr', 'name'=>'French', "greeting"=>"bonjour!", 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
                 :users      => [{'id' => '2', 'lang' => 'fr'}]
               }
             )

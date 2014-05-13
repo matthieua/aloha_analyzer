@@ -6,7 +6,7 @@
 - abbreviation: en
   name:       English
   population: 238_000_000
-  countries: 'USA, Canada, UK, Ireland, Australia'
+  countries: 'USA, UK, Canada, Ireland, Australia'
   greeting: 'hello!'
 - abbreviation: ar
   name:       Arabic

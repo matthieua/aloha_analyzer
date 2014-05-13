@@ -19,17 +19,17 @@ module AlohaAnalyzer
             analysys[:account_language][:count] += 1
             analysys[:account_language][:users].push user
           else
-            if analysys[:non_account_languages][abbreviation]
-              analysys[:non_account_languages][abbreviation][:count] += 1
-              analysys[:non_account_languages][abbreviation][:users].push user
+            if analysys[:foreign_languages][abbreviation]
+              analysys[:foreign_languages][abbreviation][:count] += 1
+              analysys[:foreign_languages][abbreviation][:users].push user
             else
-              analysys[:non_account_languages][abbreviation] = {
+              analysys[:foreign_languages][abbreviation] = {
                 :count    => 1,
                 :language => Language.find_by_abbreviation(abbreviation),
                 :users    => [user]
               }
             end
-            analysys[:non_account_languages_count] += 1
+            analysys[:foreign_languages_count] += 1
           end
           analysys[:count] += 1
         end
@@ -46,9 +46,9 @@ module AlohaAnalyzer
           language: Language.find_by_abbreviation(@language),
           users: []
         }
-        analysys[:non_account_languages_count] = 0
+        analysys[:foreign_languages_count] = 0
         analysys[:count]                   = 0
-        analysys[:non_account_languages]       = Hash.new
+        analysys[:foreign_languages]       = Hash.new
       end
     end
 

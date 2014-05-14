@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe AlohaAnalyzer::User do
-  subject(:user) { described_class.new(language, users) }
+  subject(:user) { described_class.new(language, users, options) }
   let(:language) { 'en' }
+  let(:options)  { {} }
 
   describe '#new' do
     let(:users) { [] }
@@ -40,7 +41,7 @@ describe AlohaAnalyzer::User do
   end
 
   describe '#analyze' do
-    subject(:analyze) { described_class.new(language, users).analyze }
+    subject(:analyze) { described_class.new(language, users, options).analyze }
     context 'when no users' do
       let(:users) { [] }
 
@@ -230,6 +231,26 @@ describe AlohaAnalyzer::User do
               }
             )
           end
+        end
+      end
+
+      context 'when user limit per language' do
+        let(:options) { { user_limit_per_language: 1} }
+        let(:users) {
+          [
+            {'id' => '1', 'lang' => 'en'},
+            {'id' => '2', 'lang' => 'fr'},
+            {'id' => '3', 'lang' => 'en'},
+            {'id' => '4', 'lang' => 'fr'},
+            {'id' => '5', 'lang' => 'fr'}
+          ]
+        }
+
+        it 'does not add more users per language' do
+          subject[:account_language][:users].size.should eq 1
+          subject[:account_language][:count].should eq 2
+          subject[:foreign_languages]['fr'][:users].size.should eq 1
+          subject[:foreign_languages]['fr'][:count].should eq 3
         end
       end
     end

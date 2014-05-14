@@ -3,52 +3,74 @@ module AlohaAnalyzer
 
     attr_reader :language
 
-    def initialize(language, users)
+    def initialize(language, users, options = {})
       @language    = language.downcase
       @users       = users
       @users_count = users.size
+      @options     = options
+      @analysis    = {}
+
       clean_language!
       clean_users_languages!
     end
 
     def analyze
-      boilerplate_analysis.tap do |analysys|
-        @users.each do |user|
-          abbreviation = user['lang']
-          if abbreviation == @language
-            analysys[:account_language][:count] += 1
-            analysys[:account_language][:users].push user
-          else
-            if analysys[:foreign_languages][abbreviation]
-              analysys[:foreign_languages][abbreviation][:count] += 1
-              analysys[:foreign_languages][abbreviation][:users].push user
-            else
-              analysys[:foreign_languages][abbreviation] = {
-                :count    => 1,
-                :language => Language.find_by_abbreviation(abbreviation),
-                :users    => [user]
-              }
-            end
-            analysys[:foreign_languages_count] += 1
-          end
-          analysys[:count] += 1
+      prepare!
+      @users.each do |user|
+        if user['lang'] == @language
+          add_account_language_user(user)
+          @analysis[:account_language][:count] += 1
+        else
+          add_foreign_language_user(user)
+          @analysis[:foreign_languages_count] += 1
         end
+        @analysis[:count] += 1
       end
+      @analysis
     end
-
 
     private
 
-    def boilerplate_analysis
-      Hash.new.tap do |analysys|
-        analysys[:account_language] = {
-          count:    0,
-          language: Language.find_by_abbreviation(@language),
-          users: []
+    def add_account_language_user(user)
+      unless too_many_users?(@analysis[:account_language][:users])
+        @analysis[:account_language][:users].push(user)
+      end
+    end
+
+    def add_foreign_language_user(user)
+      prepare_foreign_language(user['lang'])
+      @analysis[:foreign_languages][user['lang']][:count] += 1
+      unless too_many_users?(@analysis[:foreign_languages][user['lang']][:users])
+        @analysis[:foreign_languages][user['lang']][:users].push(user)
+      end
+    end
+
+    def prepare_foreign_language(abbreviation)
+      if @analysis[:foreign_languages][abbreviation].nil?
+        @analysis[:foreign_languages][abbreviation] = {
+          :count    => 0,
+          :language => Language.find_by_abbreviation(abbreviation),
+          :users    => []
         }
-        analysys[:foreign_languages_count] = 0
-        analysys[:count]                   = 0
-        analysys[:foreign_languages]       = Hash.new
+      end
+    end
+
+    def prepare!
+      @analysis[:account_language] = {
+        count:    0,
+        language: Language.find_by_abbreviation(@language),
+        users:    []
+      }
+      @analysis[:foreign_languages_count] = 0
+      @analysis[:count]                   = 0
+      @analysis[:foreign_languages]       = Hash.new
+    end
+
+    def too_many_users?(users)
+      if @options[:user_limit_per_language] && users.size >= @options[:user_limit_per_language]
+        true
+      else
+        false
       end
     end
 

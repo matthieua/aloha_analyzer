@@ -244,10 +244,10 @@ describe AlohaAnalyzer::User do
       context 'when user limit per language' do
         let(:options) do
           {
-            'language'                => language,
-            'analysis'                => analysis,
-            'users'                   => users,
-            'user_limit_per_language' => 1
+            'language'  => language,
+            'analysis'  => analysis,
+            'users'     => users,
+            'max_users' => 1
           }
         end
         let(:users) {

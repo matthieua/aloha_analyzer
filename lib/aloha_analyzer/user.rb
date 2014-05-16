@@ -64,7 +64,7 @@ module AlohaAnalyzer
     end
 
     def too_many_users?(users)
-      if @options['user_limit_per_language'] && users.size >= @options['user_limit_per_language']
+      if @options['max_users'] && users.size >= @options['max_users']
         true
       else
         false

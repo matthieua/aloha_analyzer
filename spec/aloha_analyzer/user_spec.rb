@@ -30,14 +30,6 @@ describe AlohaAnalyzer::User do
         subject.language.should eq 'zh'
       end
     end
-
-    context 'when language is something else' do
-      let(:language) { 'something' }
-
-      it 'does not change it' do
-        subject.language.should eq language
-      end
-    end
   end
 
   describe '#analyze' do

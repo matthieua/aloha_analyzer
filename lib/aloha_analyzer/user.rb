@@ -4,18 +4,14 @@ module AlohaAnalyzer
     attr_reader :language
 
     def initialize(language, users, options = {})
-      @language    = language.downcase
-      @users       = users
+      @language    = clean_language(language.downcase)
+      @users       = clean_users(users)
       @users_count = users.size
       @options     = options
-      @analysis    = {}
-
-      clean_language!
-      clean_users_languages!
+      @analysis    = boilerplate
     end
 
     def analyze
-      prepare!
       @users.each do |user|
         if user['lang'] == @language
           add_account_language_user(user)
@@ -55,15 +51,17 @@ module AlohaAnalyzer
       end
     end
 
-    def prepare!
-      @analysis[:account_language] = {
-        count:    0,
-        language: Language.find_by_abbreviation(@language),
-        users:    []
+    def boilerplate
+      {
+        account_language: {
+          count:    0,
+          language: Language.find_by_abbreviation(@language),
+          users:    []
+        },
+        foreign_languages_count: 0,
+        count: 0,
+        foreign_languages: {}
       }
-      @analysis[:foreign_languages_count] = 0
-      @analysis[:count]                   = 0
-      @analysis[:foreign_languages]       = Hash.new
     end
 
     def too_many_users?(users)
@@ -74,14 +72,16 @@ module AlohaAnalyzer
       end
     end
 
-    def clean_language!
-      if Language.aliases.keys.include?(@language)
-        @language = Language.aliases[@language]
+    def clean_language(language)
+      if Language.aliases.keys.include?(language)
+        Language.aliases[language]
+      else
+        language
       end
     end
 
-    def clean_users_languages!
-      @users.map! do |user|
+    def clean_users(users)
+      users.map do |user|
         if Language.aliases.keys.include?(user['lang'].downcase)
           user['lang'] = Language.aliases[user['lang'].downcase]
         end

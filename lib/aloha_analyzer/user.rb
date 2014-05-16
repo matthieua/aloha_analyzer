@@ -3,12 +3,11 @@ module AlohaAnalyzer
 
     attr_reader :language, :analysis
 
-    def initialize(language, users, options = {}, analysis = nil)
-      @language    = clean_language(language.downcase)
-      @users       = clean_users(users)
-      @users_count = users.size
+    def initialize(options)
+      @language    = clean_language(options['language'].downcase)
+      @users       = clean_users(options['users'])
+      @analysis    = options['analysis'] || boilerplate
       @options     = options
-      @analysis    = analysis || boilerplate
     end
 
     def analyze

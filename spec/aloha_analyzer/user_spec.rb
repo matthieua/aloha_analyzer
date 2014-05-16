@@ -1,9 +1,16 @@
 require 'spec_helper'
 
 describe AlohaAnalyzer::User do
-  subject(:user) { described_class.new(language, users, options, analysis) }
+  subject(:user) { described_class.new(options) }
   let(:language) { 'en' }
-  let(:options)  { {} }
+  let(:options) do
+    {
+      'language' => language,
+      'analysis' => analysis,
+      'users'    => users
+    }
+  end
+
   let(:analysis) { nil }
 
   describe '#new' do
@@ -42,29 +49,28 @@ describe AlohaAnalyzer::User do
   end
 
   describe '#analyze' do
-    subject(:analyze) { described_class.new(language, users, options, analysis).analyze }
     context 'when no users' do
       let(:users) { [] }
 
       it 'returns a hash' do
-        subject.should be_a Hash
+        subject.analyze.should be_a Hash
       end
 
       it 'includes the total count' do
-        subject['count'].should eq 0
+        subject.analyze['count'].should eq 0
       end
 
       it 'has no results with the user language' do
-        subject['account_language']['count'].should eq 0
+        subject.analyze['account_language']['count'].should eq 0
       end
 
       it 'has no results without the user language' do
-        subject['foreign_languages'].should eq({})
-        subject['foreign_languages_count'].should eq 0
+        subject.analyze['foreign_languages'].should eq({})
+        subject.analyze['foreign_languages_count'].should eq 0
       end
 
       it 'includes the user lanugage' do
-        subject['account_language']['language'].should eq(
+        subject.analyze['account_language']['language'].should eq(
           'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
           )
       end
@@ -82,15 +88,15 @@ describe AlohaAnalyzer::User do
         }
 
         it 'returns a hash' do
-          subject.should be_a Hash
+          subject.analyze.should be_a Hash
         end
 
         it 'includes the total count' do
-          subject['count'].should eq 4
+          subject.analyze['count'].should eq 4
         end
 
         it 'includes the user lanugage' do
-          subject['account_language'].should eq(
+          subject.analyze['account_language'].should eq(
             'count'    => 2,
             'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
             'users'    => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
@@ -98,11 +104,11 @@ describe AlohaAnalyzer::User do
         end
 
         it 'includs the foreign followers count' do
-          subject['foreign_languages_count'].should eq 2
+          subject.analyze['foreign_languages_count'].should eq 2
         end
 
         it 'returns results based on the user language' do
-          subject['foreign_languages'].should == {
+          subject.analyze['foreign_languages'].should == {
             'fr' => {
               'count'    => 1,
               'language' => {'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>14000000, 'countries'=>'France, Canada, Belgium, Switzerland'},
@@ -126,21 +132,21 @@ describe AlohaAnalyzer::User do
           }
 
           it 'returns a hash' do
-            subject.should be_a Hash
+            subject.analyze.should be_a Hash
           end
 
           it 'includes the total count' do
-            subject['count'].should eq 2
+            subject.analyze['count'].should eq 2
           end
 
           it 'includes the user lanugage' do
-            subject['account_language']['language'].should eq(
+            subject.analyze['account_language']['language'].should eq(
               'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
               )
           end
 
           it 'returns results based on the user language' do
-            subject['account_language'].should == {
+            subject.analyze['account_language'].should == {
               'count'      => 2,
               'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '2', 'lang' => 'en'}]
@@ -148,8 +154,8 @@ describe AlohaAnalyzer::User do
           end
 
           it 'returns results results based on the non user language' do
-            subject['foreign_languages'].should == {}
-            subject['foreign_languages_count'].should eq 0
+            subject.analyze['foreign_languages'].should == {}
+            subject.analyze['foreign_languages_count'].should eq 0
           end
         end
 
@@ -163,15 +169,15 @@ describe AlohaAnalyzer::User do
           }
 
           it 'returns a hash' do
-            subject.should be_a Hash
+            subject.analyze.should be_a Hash
           end
 
           it 'includes the total count' do
-            subject['count'].should eq 3
+            subject.analyze['count'].should eq 3
           end
 
           it 'returns results based on the user language' do
-            subject['account_language'].should == {
+            subject.analyze['account_language'].should == {
               'count'      => 0,
               'language'   => {'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},
               'users'      => []
@@ -179,11 +185,11 @@ describe AlohaAnalyzer::User do
           end
 
           it 'includes the correct foreign_languages_count' do
-            subject['foreign_languages_count'].should eq 3
+            subject.analyze['foreign_languages_count'].should eq 3
           end
 
           it 'returns results results based on the non user language' do
-            subject['foreign_languages'].should eq(
+            subject.analyze['foreign_languages'].should eq(
               'fr' => {
                 'count'      => 2,
                 'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
@@ -208,11 +214,11 @@ describe AlohaAnalyzer::User do
           }
 
           it 'includes the total count' do
-            subject['count'].should eq 3
+            subject.analyze['count'].should eq 3
           end
 
           it 'includes the user lanugage' do
-            subject['account_language'].should == {
+            subject.analyze['account_language'].should == {
               'count'      => 2,
               'language'   => { 'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia' },
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
@@ -220,11 +226,11 @@ describe AlohaAnalyzer::User do
           end
 
           it 'includes the correct foreign_languages_count' do
-            subject['foreign_languages_count'].should eq 1
+            subject.analyze['foreign_languages_count'].should eq 1
           end
 
           it 'merges english and british' do
-            subject['foreign_languages'].should eq(
+            subject.analyze['foreign_languages'].should eq(
               'fr' => {
                 'count'      => 1,
                 'language'   => {'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
@@ -236,7 +242,14 @@ describe AlohaAnalyzer::User do
       end
 
       context 'when user limit per language' do
-        let(:options) { { 'user_limit_per_language' => 1} }
+        let(:options) do
+          {
+            'language'                => language,
+            'analysis'                => analysis,
+            'users'                   => users,
+            'user_limit_per_language' => 1
+          }
+        end
         let(:users) {
           [
             {'id' => '1', 'lang' => 'en'},
@@ -247,11 +260,28 @@ describe AlohaAnalyzer::User do
           ]
         }
 
-        it 'does not add more users per language' do
-          subject['account_language']['users'].size.should eq 1
-          subject['account_language']['count'].should eq 2
-          subject['foreign_languages']['fr']['users'].size.should eq 1
-          subject['foreign_languages']['fr']['count'].should eq 3
+        it 'limits the number of account language users to 1' do
+          subject.analyze['account_language']['users'].size.should eq 1
+        end
+
+        it 'limits the number of foreign languages users to 1' do
+          subject.analyze['foreign_languages']['fr']['users'].size.should eq 1
+        end
+
+        it 'does not affect the account language count' do
+          subject.analyze['account_language']['count'].should eq 2
+        end
+
+        it 'does not affect the foreign_languages_count' do
+          subject.analyze['foreign_languages_count'].should eq 3
+        end
+
+        it 'does not affect the total count' do
+          subject.analyze['count'].should eq 5
+        end
+
+        it 'does not affect a foreign language count' do
+          subject.analyze['foreign_languages']['fr']['count'].should eq 3
         end
       end
 
@@ -283,7 +313,7 @@ describe AlohaAnalyzer::User do
         end
 
         it 'starts from the existing analysis' do
-          subject.should eq(
+          subject.analyze.should eq(
             'account_language' => {
               'count'    => 3,
               'language' => {'abbreviation'=>'en', 'greeting'=>'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},

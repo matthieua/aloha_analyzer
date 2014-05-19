@@ -16,13 +16,14 @@ module AlohaAnalyzer
 
     def self.aliases
       {
-        'en-gb' => 'en',
-        'zh-cn' => 'zh',
-        'zh-tw' => 'zh',
-        'ca'    => 'es',
-        'xx-lc' => 'en',
-        'gl'    => 'es',
-        'eu'    => 'es'
+        'en-gb'   => 'en',
+        'zh-cn'   => 'zh',
+        'zh-tw'   => 'zh',
+        'zh-Hans' => 'zh',
+        'ca'      => 'es',
+        'xx-lc'   => 'en',
+        'gl'      => 'es',
+        'eu'      => 'es'
       }
     end
 

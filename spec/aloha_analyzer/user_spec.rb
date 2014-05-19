@@ -40,10 +40,26 @@ describe AlohaAnalyzer::User do
     end
 
     context 'when analysis is not nil' do
-      let(:analysis) { double }
+      let(:analysis) { { foo: :bar } }
 
       it 'sets the analysis to the argument' do
         subject.analysis.should eq analysis
+      end
+
+      it 'clones the hash' do
+        subject.analysis.object_id.should_not eq analysis.object_id
+      end
+    end
+
+    context 'when analysis is nil' do
+      let(:analysis) { nil }
+
+      it 'sets the analysis to the analysis boilerplate' do
+        subject.analysis.should eq subject.boilerplate
+      end
+
+      it 'clones the hash' do
+        subject.analysis.object_id.should_not eq subject.boilerplate.object_id
       end
     end
   end

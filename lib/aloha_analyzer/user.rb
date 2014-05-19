@@ -6,7 +6,7 @@ module AlohaAnalyzer
     def initialize(options)
       @language    = clean_language(options['language'].downcase)
       @users       = clean_users(options['users'])
-      @analysis    = options['analysis'] || boilerplate
+      @analysis    = (options['analysis'] || boilerplate).clone
       @options     = options
     end
 
@@ -22,6 +22,19 @@ module AlohaAnalyzer
         @analysis['count'] += 1
       end
       @analysis
+    end
+
+    def boilerplate
+      {
+        'account_language' => {
+          'count'    => 0,
+          'language' => Language.find_by_abbreviation(@language),
+          'users'    => []
+        },
+        'foreign_languages_count' => 0,
+        'count'                   => 0,
+        'foreign_languages'       => {}
+      }
     end
 
     private
@@ -48,19 +61,6 @@ module AlohaAnalyzer
           'users'    => []
         }
       end
-    end
-
-    def boilerplate
-      {
-        'account_language' => {
-          'count'    => 0,
-          'language' => Language.find_by_abbreviation(@language),
-          'users'    => []
-        },
-        'foreign_languages_count' => 0,
-        'count'                   => 0,
-        'foreign_languages'       => {}
-      }
     end
 
     def too_many_users?(users)

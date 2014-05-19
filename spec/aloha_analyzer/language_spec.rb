@@ -2,19 +2,19 @@ require 'spec_helper'
 
 describe AlohaAnalyzer::Language do
   describe '.all' do
-    it 'returns an array' do
-      described_class.all.should be_a Array
+    it 'returns a Hash' do
+      described_class.all.should be_a Hash
     end
 
     it 'is not empty' do
-      described_class.all.should be_a Array
+      described_class.all.should_not be_empty
     end
   end
 
   describe '.total' do
     it 'returns the total number of language users' do
       total = 0
-      described_class.all.each do |language|
+      described_class.all.each do |abbreviation, language|
         total += language['population']
       end
       total.should eq described_class.total

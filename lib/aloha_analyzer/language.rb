@@ -3,11 +3,12 @@ require 'yaml'
 module AlohaAnalyzer
   class Language
 
-    LANGUAGES        = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/language.yml'))
+    LANGUAGES        = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/languages.yml'))
+    ALIASES          = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/aliases.yml'))
     TOTAL_POPULATION = 790000000
 
     def self.all
-      LANGUAGES
+      LANGUAGES['languages']
     end
 
     def self.total
@@ -15,23 +16,15 @@ module AlohaAnalyzer
     end
 
     def self.aliases
-      {
-        'en-gb'   => 'en',
-        'zh-cn'   => 'zh',
-        'zh-tw'   => 'zh',
-        'zh-Hans' => 'zh',
-        'ca'      => 'es',
-        'xx-lc'   => 'en',
-        'gl'      => 'es',
-        'eu'      => 'es'
-      }
+      ALIASES['aliases']
     end
 
     def self.find_by_abbreviation(abbreviation)
-      all.each do |language|
-        return language if language['abbreviation'] == abbreviation
+      if LANGUAGES['languages'][abbreviation]
+        LANGUAGES['languages'][abbreviation]
+      else
+        raise "Could not find language abbreviation '#{abbreviation}'"
       end
-      raise "Could not find language abbreviation '#{abbreviation}'"
     end
   end
 end

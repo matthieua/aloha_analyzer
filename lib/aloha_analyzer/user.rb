@@ -4,14 +4,13 @@ module AlohaAnalyzer
     attr_reader :language, :analysis
 
     def initialize(options)
-      @language    = clean_language(options['language'].downcase)
-      @users       = clean_users(options['users'])
-      @analysis    = (options['analysis'] || boilerplate).clone
-      @options     = options
+      @language = clean_language(options['language'].downcase)
+      @analysis = (options['analysis'] || boilerplate).clone
+      @options  = options
     end
 
-    def analyze
-      @users.each do |user|
+    def analyze(users)
+      clean_users(users).each do |user|
         if user['lang'] == @language
           add_account_language_user(user)
           @analysis['account_language']['count'] += 1

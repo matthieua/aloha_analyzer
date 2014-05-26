@@ -8,13 +8,13 @@ languages:
   'en':
     abbreviation: 'en'
     name:         English
-    population:   238_000_000
+    population:   239_000_000
     countries:    'USA, UK, Canada, Ireland, Australia'
     greeting:     'hello!'
   'ar':
     abbreviation: 'ar'
     name:         Arabic
-    population:   42_000_000
+    population:   44_000_000
     countries:    'Egypt, Tunisia, Lebanon, United Arab Emirates'
     greeting:     'مرحبا!'
   'ja':
@@ -32,25 +32,25 @@ languages:
   'de':
     abbreviation: 'de'
     name:         German
-    population:   5_000_000
+    population:   6_000_000
     countries:    'Germany, Austria, Switzerland, Belgium'
     greeting:     'hallo!'
   'it':
     abbreviation: 'it'
     name:         Italian
-    population:   8_000_000
+    population:   9_000_000
     countries:    'Italy, Switzerland, Malta'
     greeting:     'ciao!'
   'id':
     abbreviation: 'id'
     name:         Indonesian
-    population:   20_000_000
+    population:   25_000_000
     countries:    'Indonesia'
     greeting:     'halo!'
   'pt':
     abbreviation: 'pt'
     name:         Portuguese
-    population:   42_000_000
+    population:   41_000_000
     countries:    'Portugal, Brazil, Macau'
     greeting:     'olá!'
   'ko':
@@ -83,6 +83,12 @@ languages:
     countries:    'Philippines'
     greeting:     'mabuhay!'
     population:   8_000_000
+  'hr':
+    abbreviation: 'hr'
+    name:         Croatian
+    countries:    'Croatia, Bosnia and Herzegovina, Serbia'
+    greeting:     'bok!'
+    population:   100_000
   'ms':
     abbreviation: 'ms'
     name:         Malay
@@ -176,7 +182,7 @@ languages:
   'cs':
     abbreviation: 'cs'
     name:         Czech
-    population:   1_0000_000
+    population:   900_000
     countries:    'Czech Republic'
     greeting:     ' ahoj!'
   'ro':

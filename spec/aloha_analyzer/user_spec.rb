@@ -86,7 +86,7 @@ describe AlohaAnalyzer::User do
 
       it 'includes the user lanugage' do
         subject['account_language']['language'].should eq(
-          'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
+          'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
           )
       end
     end
@@ -113,7 +113,7 @@ describe AlohaAnalyzer::User do
         it 'includes the user lanugage' do
           subject['account_language'].should eq(
             'count'    => 2,
-            'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
+            'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
             'users'    => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
             )
         end
@@ -131,7 +131,7 @@ describe AlohaAnalyzer::User do
               },
               'de' => {
                 'count'    => 1,
-                'language' => {'abbreviation'=>'de', 'name'=>'German', 'greeting'=>'hallo!', 'population'=>5000000, 'countries'=>'Germany, Austria, Switzerland, Belgium'},
+                'language' => {'abbreviation'=>'de', 'name'=>'German', 'greeting'=>'hallo!', 'population'=>6000000, 'countries'=>'Germany, Austria, Switzerland, Belgium'},
                 'users'    => [{'id' => '4', 'lang' => 'de'}]
               }
             }
@@ -156,14 +156,14 @@ describe AlohaAnalyzer::User do
 
           it 'includes the user lanugage' do
             subject['account_language']['language'].should eq(
-              'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
+              'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
               )
           end
 
           it 'returns results based on the user language' do
             subject['account_language'].should == {
               'count'      => 2,
-              'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>238000000, 'countries' => 'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
+              'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>239000000, 'countries' => 'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '2', 'lang' => 'en'}]
             }
           end
@@ -194,7 +194,7 @@ describe AlohaAnalyzer::User do
           it 'returns results based on the user language' do
             subject['account_language'].should == {
               'count'      => 0,
-              'language'   => {'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},
+              'language'   => {'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},
               'users'      => []
             }
           end
@@ -212,7 +212,7 @@ describe AlohaAnalyzer::User do
                 },
                 'de' => {
                   'count'    => 1,
-                  'language' => {'abbreviation'=>'de', 'name'=>'German', 'greeting'=>'hallo!', 'population'=>5000000, 'countries' => 'Germany, Austria, Switzerland, Belgium' },
+                  'language' => {'abbreviation'=>'de', 'name'=>'German', 'greeting'=>'hallo!', 'population'=>6000000, 'countries' => 'Germany, Austria, Switzerland, Belgium' },
                   'users'    => [{'id' => '1', 'lang' => 'de'}]
                 }
                 )
@@ -235,7 +235,7 @@ describe AlohaAnalyzer::User do
           it 'includes the user lanugage' do
             subject['account_language'].should == {
               'count'      => 2,
-              'language'   => { 'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia' },
+              'language'   => { 'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia' },
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
             }
           end
@@ -311,7 +311,7 @@ describe AlohaAnalyzer::User do
           {
             'account_language' => {
               'count'      => 2,
-              'language'   => { 'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia' },
+              'language'   => { 'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia' },
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
             },
             'foreign_languages_count' => 1,
@@ -330,7 +330,7 @@ describe AlohaAnalyzer::User do
           subject.should eq(
             'account_language' => {
               'count'    => 3,
-              'language' => {'abbreviation'=>'en', 'greeting'=>'hello!', 'name'=>'English', 'population'=>238000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},
+              'language' => {'abbreviation'=>'en', 'greeting'=>'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},
               'users'    => [{'id'=>'1', 'lang'=>'en'}, {'id'=>'3', 'lang'=>'en'}, {'id'=>'4', 'lang'=>'en'}]
             },
             'foreign_languages_count' => 2,

@@ -182,7 +182,7 @@ languages:
   'cs':
     abbreviation: 'cs'
     name:         Czech
-    population:   900_000
+    population:   800_000
     countries:    'Czech Republic'
     greeting:     ' ahoj!'
   'ro':
@@ -191,3 +191,9 @@ languages:
     population:   1_0000_000
     countries:    'Romania, Serbia, Moldova'
     greeting:     'salut!'
+  'km':
+    abbreviation: 'km'
+    name:         Khmer
+    population:   100_000
+    countries:    'Cambodia'
+    greeting:     'chomreabsuor!'

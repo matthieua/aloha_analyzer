@@ -203,3 +203,9 @@ languages:
     population:   50_000
     countries:    'Iceland'
     greeting:     'halló!'
+  'sr':
+    abbreviation: 'sr'
+    name:         Serbian
+    population:   1_000_000
+    countries:    'Serbia, Bosnia & Herzegovina'
+    greeting:     'zdravo!'

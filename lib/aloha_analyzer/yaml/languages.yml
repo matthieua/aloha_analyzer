@@ -164,19 +164,19 @@ languages:
   'th':
     abbreviation: 'th'
     name:         Thai
-    population:   7_0000_000
+    population:   7_000_000
     countries:    'Thailand'
     greeting:     'วัสดี!'
   'uk':
     abbreviation: 'uk'
     name:         Ukranian
-    population:   1_0000_000
+    population:   1_000_000
     countries:    'Ukraine'
     greeting:     'вітаю!'
   'el':
     abbreviation: 'el'
     name:         Greek
-    population:   1_0000_000
+    population:   1_000_000
     countries:    'Greece, Cyprus'
     greeting:     'γειά!'
   'cs':
@@ -188,7 +188,7 @@ languages:
   'ro':
     abbreviation: 'ro'
     name:         Romanian
-    population:   1_0000_000
+    population:   1_000_000
     countries:    'Romania, Serbia, Moldova'
     greeting:     'salut!'
   'km':
@@ -197,3 +197,9 @@ languages:
     population:   100_000
     countries:    'Cambodia'
     greeting:     'chomreabsuor!'
+  'is':
+    abbreviation: 'is'
+    name:         Icelandic
+    population:   50_000
+    countries:    'Iceland'
+    greeting:     'halló!'

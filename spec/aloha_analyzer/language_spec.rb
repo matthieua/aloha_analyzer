@@ -11,16 +11,6 @@ describe AlohaAnalyzer::Language do
     end
   end
 
-  describe '.total' do
-    it 'returns the total number of language users' do
-      total = 0
-      described_class.all.each do |abbreviation, language|
-        total += language['population']
-      end
-      total.should eq described_class.total
-    end
-  end
-
   describe '.find_by_abbreviation' do
     subject(:language) { described_class.find_by_abbreviation(abbreviation) }
     context 'when it exits' do

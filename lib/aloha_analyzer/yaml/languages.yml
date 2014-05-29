@@ -219,5 +219,6 @@ languages:
     abbreviation: 'lt'
     name:         'Vietnamese'
     population:   7_000_000
-    countries:    'Vietname'
-    greeting:     'chào!'
+    countries:    'Vietnam'
+    greeting:     'chào!'
+

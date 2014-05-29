@@ -211,7 +211,7 @@ languages:
     greeting:     'zdravo!'
   'lt':
     abbreviation: 'lt'
-    name:         Lithuanian'
+    name:         Lithuanian
     population:   100_000
     countries:    'Lithuania, Belarus, Latvia, Poland'
     greeting:     'sveiki!'

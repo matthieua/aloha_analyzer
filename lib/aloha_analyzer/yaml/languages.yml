@@ -215,3 +215,9 @@ languages:
     population:   100_000
     countries:    'Lithuania, Belarus, Latvia, Poland'
     greeting:     'sveiki!'
+  'vi':
+    abbreviation: 'lt'
+    name:         'Vietnamese'
+    population:   7_000_000
+    countries:    'Vietname'
+    greeting:     'chào!'

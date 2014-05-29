@@ -221,4 +221,9 @@ languages:
     population:   7_000_000
     countries:    'Vietnam'
     greeting:     'chào!'
-
+  'sl':
+    abbreviation: 'sl'
+    name:         'Slovenian'
+    population:   50_000
+    countries:    'Slovenia'
+    greeting:     'pozdravi!'

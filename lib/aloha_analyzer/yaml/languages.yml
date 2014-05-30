@@ -233,3 +233,9 @@ languages:
     population:   500_000
     countries:    'Bulgaria'
     greeting:     'здравей!'
+  'lv':
+    abbreviation: 'lv'
+    name:         'Latvian'
+    population:   50_000
+    countries:    'Latvia'
+    greeting:     'sveiki!'

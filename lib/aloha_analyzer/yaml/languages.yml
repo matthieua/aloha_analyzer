@@ -208,7 +208,7 @@ languages:
     name:         Serbian
     population:   1_000_000
     countries:    'Serbia, Bosnia & Herzegovina'
-    greeting:     'zdravo!'
+    greeting:     'здраво!'
   'lt':
     abbreviation: 'lt'
     name:         Lithuanian
@@ -227,3 +227,9 @@ languages:
     population:   50_000
     countries:    'Slovenia'
     greeting:     'pozdravi!'
+  'bg':
+    abbreviation: 'bg'
+    name:         'Bulgarian'
+    population:   500_000
+    countries:    'Bulgaria'
+    greeting:     'здравей!'

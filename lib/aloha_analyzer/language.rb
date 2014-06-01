@@ -18,7 +18,7 @@ module AlohaAnalyzer
       if LANGUAGES['languages'][abbreviation]
         LANGUAGES['languages'][abbreviation]
       else
-        raise "Could not find language abbreviation '#{abbreviation}'"
+        LANGUAGES['languages']['other']
       end
     end
   end

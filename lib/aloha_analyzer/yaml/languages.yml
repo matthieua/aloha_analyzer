@@ -245,3 +245,9 @@ languages:
     population:   50_000
     countries:    'Macedonia, Albania, Romania, Serbia'
     greeting:     'Здраво!'
+  'other':
+    abbreviation: 'other'
+    name:         'Other'
+    population:   0
+    countries:    ''
+    greeting:     ''

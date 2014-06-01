@@ -164,7 +164,7 @@ languages:
   'th':
     abbreviation: 'th'
     name:         Thai
-    population:   7_000_000
+    population:   4_500_000
     countries:    'Thailand'
     greeting:     'วัสดี!'
   'uk':
@@ -239,3 +239,9 @@ languages:
     population:   50_000
     countries:    'Latvia'
     greeting:     'sveiki!'
+  'mk':
+    abbreviation: 'mk'
+    name:         'Macedonian'
+    population:   50_000
+    countries:    'Macedonia, Albania, Romania, Serbia'
+    greeting:     'Здраво!'

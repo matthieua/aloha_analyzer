@@ -16,10 +16,20 @@ module AlohaAnalyzer
 
     def self.find_by_abbreviation(abbreviation)
       if LANGUAGES['languages'][abbreviation]
-        LANGUAGES['languages'][abbreviation]
+        format(LANGUAGES['languages'][abbreviation], :twitter)
       else
-        LANGUAGES['languages']['other']
+        format(LANGUAGES['languages']['other'], :twitter)
       end
+    end
+
+    def self.format(language, network)
+      {
+        'abbreviation' => language['abbreviation'],
+        'name'         => language['name'],
+        'population'   => language["#{network}_population"],
+        'countries'    => language['countries'],
+        'greeting'     => language['greeting']
+      }
     end
   end
 end

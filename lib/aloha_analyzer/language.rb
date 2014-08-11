@@ -3,8 +3,8 @@ require 'yaml'
 module AlohaAnalyzer
   class Language
 
-    LANGUAGES        = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/languages.yml'))
-    ALIASES          = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/aliases.yml'))
+    LANGUAGES = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/languages.yml'))
+    ALIASES   = YAML::load_file(File.join(File.dirname(__FILE__), 'yaml/aliases.yml'))
 
     def self.all
       LANGUAGES['languages']

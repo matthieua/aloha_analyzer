@@ -169,7 +169,7 @@ languages:
     greeting:     'วัสดี!'
   'uk':
     abbreviation: 'uk'
-    name:         Ukranian
+    name:         Ukrainian
     population:   1_000_000
     countries:    'Ukraine'
     greeting:     'вітаю!'
@@ -184,7 +184,7 @@ languages:
     name:         Czech
     population:   800_000
     countries:    'Czech Republic'
-    greeting:     ' ahoj!'
+    greeting:     'ahoj!'
   'ro':
     abbreviation: 'ro'
     name:         Romanian

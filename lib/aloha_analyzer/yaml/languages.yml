@@ -130,8 +130,8 @@ languages:
     name:                Norwegian
     twitter_population:  300_000
     facebook_population: 0
-    countries:           'goddag'
-    greeting:            'hello!'
+    countries:           'Norway'
+    greeting:            'goddag!'
   'sv':
     abbreviation:        'sv'
     name:                Swedish

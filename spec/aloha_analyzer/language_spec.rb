@@ -12,7 +12,7 @@ describe AlohaAnalyzer::Language do
   end
 
   describe '.find_by_abbreviation' do
-    subject(:language) { described_class.find_by_abbreviation(abbreviation) }
+    subject(:language) { described_class.find_by_abbreviation(abbreviation, 'twitter') }
     context 'when it exits' do
       let(:abbreviation) { 'fr' }
 

@@ -1,5 +1,11 @@
 module AlohaAnalyzer
-  class Facebook
-    attr_reader :language, :analysis
+  class Facebook < Base
+    def self.network_name
+      'facebook'
+    end
+
+    def self.language_key
+      'locale'
+    end
   end
 end

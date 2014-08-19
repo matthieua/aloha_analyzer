@@ -14,11 +14,11 @@ module AlohaAnalyzer
       ALIASES['aliases']
     end
 
-    def self.find_by_abbreviation(abbreviation)
+    def self.find_by_abbreviation(abbreviation, network)
       if LANGUAGES['languages'][abbreviation]
-        format(LANGUAGES['languages'][abbreviation], :twitter)
+        format(LANGUAGES['languages'][abbreviation], network)
       else
-        format(LANGUAGES['languages']['other'], :twitter)
+        format(LANGUAGES['languages']['other'], network)
       end
     end
 

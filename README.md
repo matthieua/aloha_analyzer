@@ -16,13 +16,6 @@ Or install it yourself as:
 
     $ gem install aloha_analyzer
 
-## Usage
-
-```ruby
-aloha = AlohaAnalyser::User.new(username, { credentials: credentials })
-aloha.analyze!
-```
-
 ## Contributing
 
 1. Fork it

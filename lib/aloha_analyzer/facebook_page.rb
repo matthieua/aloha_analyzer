@@ -23,13 +23,15 @@ module AlohaAnalyzer
     end
 
     def clean_languages(languages)
-      languages.each do |language_key, count|
-        if Language.aliases.keys.include?(language_key.downcase)
-          if languages[Language.aliases[language_key.downcase]]
-            languages[Language.aliases[language_key.downcase]] = languages[Language.aliases[language_key.downcase]] + count
-            languages.delete language_key
+      Hash.new.tap do |cleaned_languages|
+        languages.each do |language_key, count|
+          abbreviation = Language.aliases[language_key.downcase]
+          abbreviation = Language.find_by_abbreviation(language_key.downcase, network_name)['abbreviation'] if abbreviation.nil?
+
+          if cleaned_languages[abbreviation]
+            cleaned_languages[abbreviation] += count
           else
-            languages[Language.aliases[language_key.downcase]] = languages.delete language_key
+            cleaned_languages[abbreviation] = count
           end
         end
       end

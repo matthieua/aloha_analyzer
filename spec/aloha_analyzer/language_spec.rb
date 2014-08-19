@@ -45,8 +45,7 @@ describe AlohaAnalyzer::Language do
       end
 
       it 'has no population' do
-        expect(subject['population']).to be_a Fixnum
-        expect(subject['population']).to eq 0
+        expect(subject['population']).to be_nil
       end
 
       it 'other as a name' do

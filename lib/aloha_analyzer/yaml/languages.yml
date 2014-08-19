@@ -24,7 +24,6 @@ languages:
     abbreviation:        'ja'
     name:                Japanese
     twitter_population:  106_580_000
-    facebook_population: 0
     countries:           'Japan, Brazil'
     greeting:            '今日は!'
   'es':
@@ -66,7 +65,6 @@ languages:
     abbreviation:        'ko'
     name:                Korean
     twitter_population:  7_000_000
-    facebook_population: 0
     countries:           'South Korea'
     greeting:            '안녕하세요!'
   'tr':
@@ -80,14 +78,12 @@ languages:
     abbreviation:        'ru'
     name:                Russian
     twitter_population:  5_000_000
-    facebook_population: 0
     countries:           'Russia, Belarus, Kazakhstan, Kyrgyzstan'
     greeting:            'привет!'
   'nl':
     abbreviation:        'nl'
     name:                Dutch
     twitter_population:  8_000_000
-    facebook_population: 0
     countries:           'Netherlands, Belgium'
     greeting:            'hallo!'
   'fil':
@@ -108,7 +104,6 @@ languages:
     abbreviation:        'ms'
     name:                Malay
     twitter_population:  50_000_000
-    facebook_population: 0
     countries:           'Malaysia, Singapore, Brunei'
     greeting:            'hello!'
   'zh':
@@ -122,174 +117,148 @@ languages:
     abbreviation:        'hi'
     name:                Hindi
     twitter_population:  12_000_000
-    facebook_population: 0
     countries:           'India, Pakistan, Fiji'
     greeting:            'नमस्ते!'
   'no':
     abbreviation:        'no'
     name:                Norwegian
     twitter_population:  300_000
-    facebook_population: 0
     countries:           'Norway'
     greeting:            'goddag!'
   'sv':
     abbreviation:        'sv'
     name:                Swedish
     twitter_population:  500_000
-    facebook_population: 0
     countries:           'Sweden'
     greeting:            'god dag!'
   'fi':
     abbreviation:        'fi'
     name:                Finnish
     twitter_population:  100_000
-    facebook_population: 0
     countries:           'Finnish'
     greeting:            ' terve!'
   'da':
     abbreviation:        'da'
     name:                Danish
     twitter_population:  200_000
-    facebook_population: 0
     countries:           'Danish'
     greeting:            'hej!'
   'pl':
     abbreviation:        'pl'
     name:                Polish
     twitter_population:  300_000
-    facebook_population: 0
     countries:           'Poland'
     greeting:            'cześć!'
   'hu':
     abbreviation:        'hu'
     name:                Hungarian
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Hungary'
     greeting:            ' jó napot kívánok!'
   'fa':
     abbreviation:        'fa'
     name:                Farsi
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Iran, Afghanistan, Tajikistan'
     greeting:            ' سلام!'
   'he':
     abbreviation:        'he'
     name:                Hebrew
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Israel'
     greeting:            'שלום!'
   'ur':
     abbreviation:        'ur'
     name:                Urdu
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'India, Pakistan, Fiji'
     greeting:            'لسلام علیکم!'
   'th':
     abbreviation:        'th'
     name:                Thai
     twitter_population:  4_500_000
-    facebook_population: 0
     countries:           'Thailand'
     greeting:            'วัสดี!'
   'uk':
     abbreviation:        'uk'
     name:                Ukrainian
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Ukraine'
     greeting:            'вітаю!'
   'el':
     abbreviation:        'el'
     name:                Greek
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Greece, Cyprus'
     greeting:            'γειά!'
   'cs':
     abbreviation:        'cs'
     name:                Czech
     twitter_population:  800_000
-    facebook_population: 0
     countries:           'Czech Republic'
     greeting:            'ahoj!'
   'ro':
     abbreviation:        'ro'
     name:                Romanian
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Romania, Serbia, Moldova'
     greeting:            'salut!'
   'km':
     abbreviation:        'km'
     name:                Khmer
     twitter_population:  100_000
-    facebook_population: 0
     countries:           'Cambodia'
     greeting:            'chomreabsuor!'
   'is':
     abbreviation:        'is'
     name:                Icelandic
     twitter_population:  50_000
-    facebook_population: 0
     countries:           'Iceland'
     greeting:            'halló!'
   'sr':
     abbreviation:        'sr'
     name:                Serbian
     twitter_population:  1_000_000
-    facebook_population: 0
     countries:           'Serbia, Bosnia & Herzegovina'
     greeting:            'здраво!'
   'lt':
     abbreviation:        'lt'
     name:                Lithuanian
     twitter_population:  100_000
-    facebook_population: 0
     countries:           'Lithuania, Belarus, Latvia, Poland'
     greeting:            'sveiki!'
   'vi':
     abbreviation:        'vi'
     name:                'Vietnamese'
     twitter_population:  7_000_000
-    facebook_population: 0
     countries:           'Vietnam'
     greeting:            'chào!'
   'sl':
     abbreviation:        'sl'
     name:                'Slovenian'
     twitter_population:  50_000
-    facebook_population: 0
     countries:           'Slovenia'
     greeting:            'pozdravi!'
   'bg':
     abbreviation:        'bg'
     name:                'Bulgarian'
     twitter_population:  500_000
-    facebook_population: 0
     countries:           'Bulgaria'
     greeting:            'здравей!'
   'lv':
     abbreviation:        'lv'
     name:                'Latvian'
     twitter_population:  50_000
-    facebook_population: 0
     countries:           'Latvia'
     greeting:            'sveiki!'
   'mk':
     abbreviation:        'mk'
     name:                'Macedonian'
     twitter_population:  50_000
-    facebook_population: 0
     countries:           'Macedonia, Albania, Romania, Serbia'
     greeting:            'Здраво!'
   'other':
     abbreviation:        'other'
     name:                'Other'
-    twitter_population:  0
-    facebook_population: 0
     countries:           ''
     greeting:            ''

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe AlohaAnalyzer::FacebookPage do
-  # {"tr_TR"=>3677, "en_US"=>89, "ka_GE"=>49, "en_GB"=>44, "az_AZ"=>39, "fr_FR"=>35, "bg_BG"=>28, "ru_RU"=>20, "de_DE"=>19, "ar_AR"=>8, "fr_CA"=>6, "es_LA"=>6, "nl_NL"=>4, "sq_AL"=>3, "pl_PL"=>2, "pt_BR"=>2, "es_ES"=>2, "it_IT"=>2, "lt_LT"=>1, "da_DK"=>1, "cs_CZ"=>1, "el_GR"=>1, "sr_RS"=>1, "et_EE"=>1, "mk_MK"=>1, "en_IN"=>1, "pt_PT"=>1, "jv_ID"=>1}
   subject(:facebook_page) { described_class.new(options) }
   let(:language)     { 'en' }
   let(:options) do
@@ -11,6 +10,11 @@ describe AlohaAnalyzer::FacebookPage do
     }
   end
   let(:analysis) { nil }
+
+  it 'returns a returns' do
+    languages = {"tr_TR"=>3677, "en_US"=>89, "ka_GE"=>49, "en_GB"=>44, "az_AZ"=>39, "fr_FR"=>35, "bg_BG"=>28, "ru_RU"=>20, "de_DE"=>19, "ar_AR"=>8, "fr_CA"=>6, "es_LA"=>6, "nl_NL"=>4, "sq_AL"=>3, "pl_PL"=>2, "pt_BR"=>2, "es_ES"=>2, "it_IT"=>2, "lt_LT"=>1, "da_DK"=>1, "cs_CZ"=>1, "el_GR"=>1, "sr_RS"=>1, "et_EE"=>1, "mk_MK"=>1, "en_IN"=>1, "pt_PT"=>1, "jv_ID"=>1}
+    expect(subject.analyze(languages)).to be_a Hash
+  end
 
   describe '#new' do
     context 'when language is british' do
@@ -173,6 +177,43 @@ describe AlohaAnalyzer::FacebookPage do
           end
         end
 
+        context 'when unknown language' do
+          let(:users) do
+            {
+              'unknown'   => 1,
+              'something' => 1,
+              'fr'        => 2
+            }
+          end
+
+          it 'returns a hash' do
+            expect(subject).to be_a Hash
+          end
+
+          it 'includes the total count' do
+            expect(subject['count']).to eq 4
+          end
+
+          it 'includes the correct foreign_languages_count' do
+            expect(subject['foreign_languages_count']).to eq 4
+          end
+
+          it 'returns results results based on the non user language' do
+            expect(subject['foreign_languages']).to eq(
+              'fr' => {
+                'count'      => 2,
+                'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>45000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
+                'users' => []
+                },
+                'other' => {
+                  'count'    => 2,
+                  'language' => {'abbreviation'=>'other', 'name'=>'Other', 'greeting'=>'', 'population'=>nil, 'countries' => '' },
+                  'users'    => []
+                }
+                )
+          end
+        end
+
         context 'when no users language users' do
           let(:users) do
             {
@@ -222,7 +263,7 @@ describe AlohaAnalyzer::FacebookPage do
             {
               'en'    => 1,
               'en_US' => 1,
-              'fr'    => 1
+              'fr_CA' => 1
             }
           end
 

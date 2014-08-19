@@ -1,5 +1,5 @@
 module AlohaAnalyzer
-  class User
+  class Twitter
 
     attr_reader :language, :analysis
 

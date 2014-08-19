@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe AlohaAnalyzer::User do
-  subject(:user) { described_class.new(options) }
+describe AlohaAnalyzer::Twitter do
+  subject(:twitter) { described_class.new(options) }
   let(:language) { 'en' }
   let(:options) do
     {

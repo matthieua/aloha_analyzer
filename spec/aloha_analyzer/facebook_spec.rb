@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe AlohaAnalyzer::Facebook do
-  #
   subject(:facebook) { described_class.new(options) }
-  let(:language) { 'en' }
+  let(:language)     { 'en' }
   let(:options) do
     {
       'language' => language,

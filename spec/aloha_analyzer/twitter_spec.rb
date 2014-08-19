@@ -17,7 +17,7 @@ describe AlohaAnalyzer::Twitter do
       let(:language) { 'en-gb' }
 
       it 'changes to english' do
-        subject.language.should eq 'en'
+        expect(subject.language).to eq 'en'
       end
     end
 
@@ -25,7 +25,7 @@ describe AlohaAnalyzer::Twitter do
       let(:language) { 'zh-cn' }
 
       it 'changes to chinese' do
-        subject.language.should eq 'zh'
+        expect(subject.language).to eq 'zh'
       end
     end
 
@@ -33,7 +33,7 @@ describe AlohaAnalyzer::Twitter do
       let(:language) { 'zh-tw' }
 
       it 'changes to chinese' do
-        subject.language.should eq 'zh'
+        expect(subject.language).to eq 'zh'
       end
     end
 
@@ -41,11 +41,11 @@ describe AlohaAnalyzer::Twitter do
       let(:analysis) { { foo: :bar } }
 
       it 'sets the analysis to the argument' do
-        subject.analysis.should eq analysis
+        expect(subject.analysis).to eq analysis
       end
 
       it 'clones the hash' do
-        subject.analysis.object_id.should_not eq analysis.object_id
+        expect(subject.analysis.object_id).not_to eq analysis.object_id
       end
     end
 
@@ -53,11 +53,11 @@ describe AlohaAnalyzer::Twitter do
       let(:analysis) { nil }
 
       it 'sets the analysis to the analysis boilerplate' do
-        subject.analysis.should eq subject.boilerplate
+        expect(subject.analysis).to eq subject.boilerplate
       end
 
       it 'clones the hash' do
-        subject.analysis.object_id.should_not eq subject.boilerplate.object_id
+        expect(subject.analysis.object_id).not_to eq subject.boilerplate.object_id
       end
     end
   end
@@ -68,24 +68,24 @@ describe AlohaAnalyzer::Twitter do
       let(:users) { [] }
 
       it 'returns a hash' do
-        subject.should be_a Hash
+        expect(subject).to be_a Hash
       end
 
       it 'includes the total count' do
-        subject['count'].should eq 0
+        expect(subject['count']).to eq 0
       end
 
       it 'has no results with the user language' do
-        subject['account_language']['count'].should eq 0
+        expect(subject['account_language']['count']).to eq 0
       end
 
       it 'has no results without the user language' do
-        subject['foreign_languages'].should eq({})
-        subject['foreign_languages_count'].should eq 0
+        expect(subject['foreign_languages']).to eq({})
+        expect(subject['foreign_languages_count']).to eq 0
       end
 
       it 'includes the user lanugage' do
-        subject['account_language']['language'].should eq(
+        expect(subject['account_language']['language']).to eq(
           'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
           )
       end
@@ -103,15 +103,15 @@ describe AlohaAnalyzer::Twitter do
         }
 
         it 'returns a hash' do
-          subject.should be_a Hash
+          expect(subject).to be_a Hash
         end
 
         it 'includes the total count' do
-          subject['count'].should eq 4
+          expect(subject['count']).to eq 4
         end
 
         it 'includes the user lanugage' do
-          subject['account_language'].should eq(
+          expect(subject['account_language']).to eq(
             'count'    => 2,
             'language' => {'abbreviation'=>'en', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
             'users'    => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
@@ -119,11 +119,11 @@ describe AlohaAnalyzer::Twitter do
         end
 
         it 'includs the foreign followers count' do
-          subject['foreign_languages_count'].should eq 2
+          expect(subject['foreign_languages_count']).to eq 2
         end
 
         it 'returns results based on the user language' do
-          subject['foreign_languages'].should == {
+          expect(subject['foreign_languages']).to eq({
             'fr' => {
               'count'    => 1,
               'language' => {'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>14000000, 'countries'=>'France, Canada, Belgium, Switzerland'},
@@ -134,7 +134,7 @@ describe AlohaAnalyzer::Twitter do
                 'language' => {'abbreviation'=>'de', 'name'=>'German', 'greeting'=>'hallo!', 'population'=>6000000, 'countries'=>'Germany, Austria, Switzerland, Belgium'},
                 'users'    => [{'id' => '4', 'lang' => 'de'}]
               }
-            }
+            })
           end
         end
 
@@ -147,30 +147,30 @@ describe AlohaAnalyzer::Twitter do
           }
 
           it 'returns a hash' do
-            subject.should be_a Hash
+            expect(subject).to be_a Hash
           end
 
           it 'includes the total count' do
-            subject['count'].should eq 2
+            expect(subject['count']).to eq 2
           end
 
           it 'includes the user lanugage' do
-            subject['account_language']['language'].should eq(
+            expect(subject['account_language']['language']).to eq(
               'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'
               )
           end
 
           it 'returns results based on the user language' do
-            subject['account_language'].should == {
+            expect(subject['account_language']).to eq({
               'count'      => 2,
               'language'   => {'abbreviation'=>'en', 'name'=>'English', 'population'=>239000000, 'countries' => 'USA, UK, Canada, Ireland, Australia', 'greeting'=>'hello!'},
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '2', 'lang' => 'en'}]
-            }
+            })
           end
 
           it 'returns results results based on the non user language' do
-            subject['foreign_languages'].should == {}
-            subject['foreign_languages_count'].should eq 0
+            expect(subject['foreign_languages']).to eq({})
+            expect(subject['foreign_languages_count']).to eq 0
           end
         end
 
@@ -184,27 +184,27 @@ describe AlohaAnalyzer::Twitter do
           }
 
           it 'returns a hash' do
-            subject.should be_a Hash
+            expect(subject).to be_a Hash
           end
 
           it 'includes the total count' do
-            subject['count'].should eq 3
+            expect(subject['count']).to eq 3
           end
 
           it 'returns results based on the user language' do
-            subject['account_language'].should == {
+            expect(subject['account_language']).to eq({
               'count'      => 0,
               'language'   => {'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},
               'users'      => []
-            }
+            })
           end
 
           it 'includes the correct foreign_languages_count' do
-            subject['foreign_languages_count'].should eq 3
+            expect(subject['foreign_languages_count']).to eq 3
           end
 
           it 'returns results results based on the non user language' do
-            subject['foreign_languages'].should eq(
+            expect(subject['foreign_languages']).to eq(
               'fr' => {
                 'count'      => 2,
                 'language' => { 'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland' },
@@ -229,23 +229,23 @@ describe AlohaAnalyzer::Twitter do
           }
 
           it 'includes the total count' do
-            subject['count'].should eq 3
+            expect(subject['count']).to eq 3
           end
 
           it 'includes the user lanugage' do
-            subject['account_language'].should == {
+            expect(subject['account_language']).to eq({
               'count'      => 2,
               'language'   => { 'abbreviation'=>'en', 'greeting' => 'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia' },
               'users'      => [{'id' => '1', 'lang' => 'en'}, {'id' => '3', 'lang' => 'en'}]
-            }
+            })
           end
 
           it 'includes the correct foreign_languages_count' do
-            subject['foreign_languages_count'].should eq 1
+            expect(subject['foreign_languages_count']).to eq 1
           end
 
           it 'merges english and british' do
-            subject['foreign_languages'].should eq(
+            expect(subject['foreign_languages']).to eq(
               'fr' => {
                 'count'      => 1,
                 'language'   => {'abbreviation'=>'fr', 'name'=>'French', 'greeting'=>'bonjour!', 'population'=>14000000, 'countries' => 'France, Canada, Belgium, Switzerland'},
@@ -275,27 +275,27 @@ describe AlohaAnalyzer::Twitter do
         }
 
         it 'limits the number of account language users to 1' do
-          subject['account_language']['users'].size.should eq 1
+          expect(subject['account_language']['users'].size).to eq 1
         end
 
         it 'limits the number of foreign languages users to 1' do
-          subject['foreign_languages']['fr']['users'].size.should eq 1
+          expect(subject['foreign_languages']['fr']['users'].size).to eq 1
         end
 
         it 'does not affect the account language count' do
-          subject['account_language']['count'].should eq 2
+          expect(subject['account_language']['count']).to eq 2
         end
 
         it 'does not affect the foreign_languages_count' do
-          subject['foreign_languages_count'].should eq 3
+          expect(subject['foreign_languages_count']).to eq 3
         end
 
         it 'does not affect the total count' do
-          subject['count'].should eq 5
+          expect(subject['count']).to eq 5
         end
 
         it 'does not affect a foreign language count' do
-          subject['foreign_languages']['fr']['count'].should eq 3
+          expect(subject['foreign_languages']['fr']['count']).to eq 3
         end
       end
 
@@ -327,7 +327,7 @@ describe AlohaAnalyzer::Twitter do
         end
 
         it 'starts from the existing analysis' do
-          subject.should eq(
+          expect(subject).to eq(
             'account_language' => {
               'count'    => 3,
               'language' => {'abbreviation'=>'en', 'greeting'=>'hello!', 'name'=>'English', 'population'=>239000000, 'countries'=>'USA, UK, Canada, Ireland, Australia'},

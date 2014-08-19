@@ -3,11 +3,11 @@ require 'spec_helper'
 describe AlohaAnalyzer::Language do
   describe '.all' do
     it 'returns a Hash' do
-      described_class.all.should be_a Hash
+      expect(described_class.all).to be_a Hash
     end
 
     it 'is not empty' do
-      described_class.all.should_not be_empty
+      expect(described_class.all).not_to be_empty
     end
   end
 
@@ -17,23 +17,23 @@ describe AlohaAnalyzer::Language do
       let(:abbreviation) { 'fr' }
 
       it 'returns a hash' do
-        subject.should be_a Hash
+        expect(subject).to be_a Hash
       end
 
       it 'includes the total language population' do
-        subject['population'].should be_a Fixnum
+        expect(subject['population']).to be_a Fixnum
       end
 
       it 'includes the language name' do
-        subject['name'].should eq 'French'
+        expect(subject['name']).to eq 'French'
       end
 
       it 'includes the language abbreviation' do
-        subject['abbreviation'].should eq 'fr'
+        expect(subject['abbreviation']).to eq 'fr'
       end
 
       it 'includes the languages countries' do
-        subject['countries'].should eq 'France, Canada, Belgium, Switzerland'
+        expect(subject['countries']).to eq 'France, Canada, Belgium, Switzerland'
       end
     end
 
@@ -41,24 +41,24 @@ describe AlohaAnalyzer::Language do
       let(:abbreviation) { 'esperanto' }
 
       it 'returns a hash' do
-        subject.should be_a Hash
+        expect(subject).to be_a Hash
       end
 
       it 'has no population' do
-        subject['population'].should be_a Fixnum
-        subject['population'].should eq 0
+        expect(subject['population']).to be_a Fixnum
+        expect(subject['population']).to eq 0
       end
 
       it 'other as a name' do
-        subject['name'].should eq 'Other'
+        expect(subject['name']).to eq 'Other'
       end
 
       it 'includes the other abbreviation' do
-        subject['abbreviation'].should eq 'other'
+        expect(subject['abbreviation']).to eq 'other'
       end
 
       it 'includes no countries' do
-        subject['countries'].should eq ''
+        expect(subject['countries']).to eq ''
       end
     end
   end

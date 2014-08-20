@@ -75,10 +75,11 @@ module AlohaAnalyzer
     end
 
     def add_foreign_language_user(user)
-      prepare_foreign_language(user[language_key])
-      @analysis['foreign_languages'][user[language_key]]['count'] += 1
-      unless too_many_users?(@analysis['foreign_languages'][user[language_key]]['users'])
-        @analysis['foreign_languages'][user[language_key]]['users'].push(user)
+      abbreviation = Language.find_by_abbreviation(user[language_key], network_name)['abbreviation']
+      prepare_foreign_language(abbreviation)
+      @analysis['foreign_languages'][abbreviation]['count'] += 1
+      unless too_many_users?(@analysis['foreign_languages'][abbreviation]['users'])
+        @analysis['foreign_languages'][abbreviation]['users'].push(user)
       end
     end
 

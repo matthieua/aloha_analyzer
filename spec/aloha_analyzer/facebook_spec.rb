@@ -137,6 +137,38 @@ describe AlohaAnalyzer::Facebook do
           end
         end
 
+        context 'when unknown language' do
+          let(:users) do
+            [
+              {'id' => '1', 'locale' => 'unknown'},
+              {'id' => '2', 'locale' => 'something'},
+              {'id' => '3', 'locale' => 'en-GB'}
+            ]
+          end
+
+          it 'returns a hash' do
+            expect(subject).to be_a Hash
+          end
+
+          it 'includes the total count' do
+            expect(subject['count']).to eq 3
+          end
+
+          it 'includes the correct foreign_languages_count' do
+            expect(subject['foreign_languages_count']).to eq 2
+          end
+
+          it 'returns results results based on the non user language' do
+            expect(subject['foreign_languages']).to eq(
+                'other' => {
+                  'count'    => 2,
+                  'language' => {'abbreviation'=>'other', 'name'=>'Other', 'greeting'=>'', 'population'=>nil, 'countries' => '' },
+                  'users'=> [{'id'=>'1', 'locale'=>'unknown'}, {'id'=>'2', 'locale'=>'something'}]
+                }
+              )
+          end
+        end
+
         context 'when only user langugages users' do
           let(:users) {
             [
